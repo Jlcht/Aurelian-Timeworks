@@ -1,0 +1,25 @@
+.header { 
+    display:flex; 
+    justify-content:space-between; 
+    align-items:center; 
+    padding:20px 40px; 
+    background:var(--color-bg); 
+    border-bottom:1px solid var(--color-border)
+;}
+
+.header-left { 
+    display:flex; 
+    align-items:center
+;}
+
+.header-logo { 
+    width:36px; 
+    margin-right:10px
+;}
+
+.header-nav a { 
+    margin-left:24px; 
+    font-weight:500; 
+    text-decoration:none; 
+    color:var(--color-text)
+;} 
