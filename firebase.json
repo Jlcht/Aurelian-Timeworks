@@ -6,5 +6,31 @@
       "**/.*",
       "**/node_modules/**"
     ]
-  }
+  },
+  "functions": [
+    {
+      "source": "functions",
+      "codebase": "default",
+      "disallowLegacyRuntimeConfig": true,
+      "ignore": [
+        "node_modules",
+        ".git",
+        "firebase-debug.log",
+        "firebase-debug.*.log",
+        "*.local"
+      ],
+      "predeploy": [
+        "npm --prefix \"$RESOURCE_DIR\" run lint"
+      ]
+    }
+  ],
+    "emulators": {
+      "auth": { "port": 9099 },
+      "firestore": { "port": 8080 },
+      "functions": { "port": 5001 },
+      "hosting": { "port": 5000 },
+      "pubsub": { "port": 8085 },
+      "ui": { "enabled": true, "port": 4000 }
+    }
+  
 }
