@@ -1,8 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from 'firebase/app';
 import { getFirestore } from 'firebase/firestore';
-import { getAuth } from 'firebase/auth';
-import { GoogleAuthProvider, sendSignInLinkToEmail } from 'firebase/auth';
+import { getAuth, GoogleAuthProvider, sendSignInLinkToEmail, connectAuthEmulator } from 'firebase/auth';
 
 // Firebase configuration
 const firebaseConfig = {
@@ -22,8 +21,15 @@ const app = initializeApp(firebaseConfig);
 const firestore = getFirestore(app);
 const auth = getAuth(app);
 
+if (process.env.NODE_ENV === 'development') {
+    connectAuthEmulator(auth, "http://localhost:9099");
+  }
+
 // Google Auth Provider
 const googleProvider = new GoogleAuthProvider();
 
+
+
+
 // Export everything
-export { firestore, auth, googleProvider, sendSignInLinkToEmail };
+export { app, firestore, auth, googleProvider, sendSignInLinkToEmail };

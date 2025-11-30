@@ -4,11 +4,11 @@
     justify-content: center;
     align-items: center;
     padding: 2rem;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: var(--color-fade);
 }
 
 .signin-card {
-    background: white;
+    background: var(--color-bg);
     padding: 2.5rem;
     border-radius: 12px;
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
@@ -18,7 +18,7 @@
 
 .signin-card h2 {
     margin: 0 0 1rem 0;
-    color: #333;
+    color: var(--color-text);
     font-size: 2rem;
     text-align: center;
 }
@@ -27,4 +27,101 @@
     margin: 0 0 2rem 0;
     color: #666;
     text-align: center;
+}
+
+.signin-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.signin-label {
+    font-weight: 500;
+    color: var(--color-text);
+    margin-bottom: 0.2rem;
+}
+
+.signin-input {
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    font-size: 1rem;
+    background: var(--color-bg);
+    color: var(--color-text);
+    transition: border 0.2s, background 0.2s;
+}
+
+.signin-input:focus {
+    border-color: var(--color-accent);
+    background: var(--color-accent-light);
+}
+
+.signin-submit-btn {
+    padding: 0.75rem 0;
+    background: var(--color-fade);
+    color: var(--color-bg);
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 0.5rem;
+    transition: background 0.2s, box-shadow 0.2s;
+    box-shadow: 0 3px 12px rgba(102, 126, 234, 0.12);
+}
+
+.signin-submit-btn:hover {
+    background: var(--color-fade);
+    box-shadow: 0 6px 18px rgba(102, 126, 234, 0.18);
+}
+
+.signin-or {
+    text-align: center;
+    color: var(--color-accent-light);
+    margin: 1.5rem 0 0.5rem 0;
+    font-size: 1rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+}
+
+.signin-social {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.5rem;
+}
+
+.signin-google-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    padding: 0.75rem 0;
+    background: var(--color-bg);
+    color: var(--color-text);
+    border: 2px solid var(--color-accent);
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.18s, border 0.2s, color 0.2s, box-shadow 0.2s;
+    box-shadow: 0 2px 6px rgba(102, 126, 234, 0.11);
+}
+
+.signin-google-btn:hover {
+    background: var(--color-accent-light);
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+}
+
+.signin-google-icon {
+    display: flex;
+    align-items: center;
+    font-size: 1.25rem;
 }

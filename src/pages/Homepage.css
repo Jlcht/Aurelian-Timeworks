@@ -4,4 +4,5 @@
     --color-accent:#0066ff;
     --color-accent-light:#dce9ff;
     --color-border:#e5e5e5;
+    --color-fade: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 }
