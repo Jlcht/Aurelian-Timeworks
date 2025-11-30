@@ -1,4 +1,4 @@
-.signin-container {
+.signup-container {
     min-height: calc(100vh - 200px);
     display: flex;
     justify-content: center;
@@ -7,7 +7,7 @@
     background: var(--color-fade);
 }
 
-.signin-card {
+.signup-card {
     background: var(--color-bg);
     padding: 2.5rem;
     border-radius: 12px;
@@ -16,20 +16,20 @@
     max-width: 400px;
 }
 
-.signin-card h2 {
+.signup-card h2 {
     margin: 0 0 1rem 0;
     color: var(--color-text);
     font-size: 2rem;
     text-align: center;
 }
 
-.signin-card p {
+.signup-card p {
     margin: 0 0 2rem 0;
     color: #666;
     text-align: center;
 }
 
-.signin-form {
+.signup-form {
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
@@ -41,13 +41,13 @@
     gap: 0.5rem;
 }
 
-.signin-label {
+.signup-label {
     font-weight: 500;
     color: var(--color-text);
     margin-bottom: 0.2rem;
 }
 
-.signin-input {
+.signup-input {
     padding: 0.75rem 1rem;
     border: 1px solid var(--color-border);
     border-radius: 8px;
@@ -57,12 +57,12 @@
     transition: border 0.2s, background 0.2s;
 }
 
-.signin-input:focus {
+.signup-input:focus {
     border-color: var(--color-accent);
     background: var(--color-accent-light);
 }
 
-.signin-submit-btn {
+.signup-submit-btn {
     padding: 0.75rem 0;
     background: var(--color-fade);
     color: var(--color-bg);
@@ -76,12 +76,12 @@
     box-shadow: 0 3px 12px rgba(102, 126, 234, 0.12);
 }
 
-.signin-submit-btn:hover {
+.signup-submit-btn:hover {
     background: var(--color-fade);
     box-shadow: 0 6px 18px rgba(102, 126, 234, 0.18);
 }
 
-.signin-or {
+.signup-or {
     text-align: center;
     color: var(--color-accent-light);
     margin: 1.5rem 0 0.5rem 0;
@@ -90,14 +90,14 @@
     letter-spacing: 0.04em;
 }
 
-.signin-social {
+.signup-social {
     display: flex;
     flex-direction: column;
     align-items: stretch;
     gap: 0.5rem;
 }
 
-.signin-google-btn {
+.signup-google-btn {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -114,13 +114,13 @@
     box-shadow: 0 2px 6px rgba(102, 126, 234, 0.11);
 }
 
-.signin-google-btn:hover {
+.signup-google-btn:hover {
     background: var(--color-accent-light);
     border-color: var(--color-accent);
     color: var(--color-accent);
 }
 
-.signin-google-icon {
+.signup-google-icon {
     display: flex;
     align-items: center;
     font-size: 1.25rem;
