@@ -18,7 +18,7 @@ const Dashboard = () => {
             // Optionally handle errors here
             alert('Sign out failed. Please try again.');
         }
-    };
+    }; 
 
     return (
         <>

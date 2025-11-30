@@ -2,8 +2,8 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider, useAuth } from './AuthContext';
 import Homepage from './pages/Homepage';
-import SignIn from './pages/SignIn';
-import Dashboard from './pages/Dashboard';
+import SignUp from './pages/SignUp';
+import Dashboard from './Auth/Dashboard';
 import './App.css';
 
 // Inline PrivateRoute implementation
@@ -15,7 +15,7 @@ const PrivateRoute = ({ children }) => {
     }
 
     if (!isLoggedIn) {
-        return <Navigate to="/signin" replace />;
+        return <Navigate to="/signup" replace />;
     }
 
     return children;
@@ -27,7 +27,7 @@ const App = () => {
             <Router>
                 <Routes>
                     <Route path="/" element={<Homepage />} />
-                    <Route path="/signin" element={<SignIn />} />
+                    <Route path="/signup" element={<SignUp />} />
                     <Route
                         path="/dashboard"
                         element={

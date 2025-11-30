@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Header from '../components/Header/Header';
 import Footer from '../components/Footer/Footer';
-import './SignIn.css';
+import './SignUp.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGoogle } from '@fortawesome/free-brands-svg-icons';
 import { auth, googleProvider } from '../firebase';
@@ -15,11 +15,11 @@ import {
 
 const actionCodeSettings = {
     // Update to match your deployment:
-    url: `${window.location.origin}/signin`,
+    url: `${window.location.origin}/signup`,
     handleCodeInApp: true,
 };
 
-const SignIn = () => {
+const SignUp = () => {
     const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [errorMsg, setErrorMsg] = useState('');
@@ -90,13 +90,13 @@ const SignIn = () => {
     return (
         <>
             <Header />
-            <div className="signin-container">
-                <div className="signin-card">
-                    <h2>Sign In</h2>
-                    <p>Welcome! Sign in using either email or Google.</p>
-                    <form className="signin-form" onSubmit={handlePasswordlessSignIn}>
+            <div className="signup-container">
+                <div className="signup-card">
+                    <h2>Sign Up/In</h2>
+                    <p>Welcome! Sign Up/In using either email or Google.</p>
+                    <form className="signup-form" onSubmit={handlePasswordlessSignIn}>
                         <div className="form-group">
-                            <label htmlFor="email" className="signin-label">
+                            <label htmlFor="email" className="signup-label">
                                 Email
                             </label>
                             <input
@@ -107,24 +107,24 @@ const SignIn = () => {
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
                                 required
-                                className="signin-input"
+                                className="signup-input"
                                 autoComplete="email"
                             />
                         </div>
-                        {errorMsg && <div className="signin-error">{errorMsg}</div>}
-                        {infoMsg && <div className="signin-info">{infoMsg}</div>}
-                        <button type="submit" className="signin-submit-btn">
+                        {errorMsg && <div className="signup-error">{errorMsg}</div>}
+                        {infoMsg && <div className="signup-info">{infoMsg}</div>}
+                        <button type="submit" className="signup-submit-btn">
                             Send Sign-In Link
                         </button>
                     </form>
-                    <div className="signin-or">or</div>
-                    <div className="signin-social">
+                    <div className="signup-or">or</div>
+                    <div className="signup-social">
                         <button
                             type="button"
-                            className="signin-google-btn"
+                            className="signup-google-btn"
                             onClick={handleGoogleSignIn}
                         >
-                            <span className="signin-google-icon">
+                            <span className="signup-google-icon">
                                 <FontAwesomeIcon icon={faGoogle} />
                             </span>
                             Sign in with Google
@@ -137,5 +137,4 @@ const SignIn = () => {
     );
 };
 
-export default SignIn;
-                        
+export default SignUp;
