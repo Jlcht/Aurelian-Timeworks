@@ -1,32 +1,45 @@
-/**
- * Import function triggers from their respective submodules:
- *
- * const {onCall} = require("firebase-functions/v2/https");
- * const {onDocumentWritten} = require("firebase-functions/v2/firestore");
- *
- * See a full list of supported triggers at https://firebase.google.com/docs/functions
- */
+// Import 2nd Gen Firebase Functions
+const { onRequest } = require("firebase-functions/v2/https");
+const { onCall } = require("firebase-functions/v2/https");
 
-const {setGlobalOptions} = require("firebase-functions");
-const {onRequest} = require("firebase-functions/https");
-const logger = require("firebase-functions/logger");
+// Import Firebase Admin SDK
+const admin = require("firebase-admin");
 
-// For cost control, you can set the maximum number of containers that can be
-// running at the same time. This helps mitigate the impact of unexpected
-// traffic spikes by instead downgrading performance. This limit is a
-// per-function limit. You can override the limit for each function using the
-// `maxInstances` option in the function's options, e.g.
-// `onRequest({ maxInstances: 5 }, (req, res) => { ... })`.
-// NOTE: setGlobalOptions does not apply to functions using the v1 API. V1
-// functions should each use functions.runWith({ maxInstances: 10 }) instead.
-// In the v1 API, each function can only serve one request per container, so
-// this will be the maximum concurrent request count.
-setGlobalOptions({ maxInstances: 10 });
+// Initialize Firebase Admin
+admin.initializeApp();
 
-// Create and deploy your first functions
-// https://firebase.google.com/docs/functions/get-started
+// Import 1st Gen for auth triggers (2nd Gen auth triggers have limitations)
+const functions = require("firebase-functions");
 
-// exports.helloWorld = onRequest((request, response) => {
-//   logger.info("Hello logs!", {structuredData: true});
-//   response.send("Hello from Firebase!");
-// });
+// Auth trigger using 1st Gen syntax (more reliable for auth events)
+exports.onUserCreate = functions.auth.user().onCreate(async (user) => {
+    try {
+        // Log the new user's UID and email
+        console.log(`New user created: UID=${user.uid}, Email=${user.email}`);
+
+        // Randomly select between two profile images
+        const profileImages = [
+            "https://firebasestorage.googleapis.com/v0/b/backend-app-jl.firebasestorage.app/o/defaultprofilepic%2FMonkey_space_southpark_cartoon.png?alt=media&token=ab9024fb-7ee4-4032-96c4-7e098286cc7c",
+            "https://firebasestorage.googleapis.com/v0/b/backend-app-jl.firebasestorage.app/o/defaultprofilepic%2FMonkey_space_onepiece.png?alt=media&token=7d89b200-6997-420e-a25e-95e1f19fddc4"
+        ];
+        const randomProfileImage = profileImages[Math.floor(Math.random() * profileImages.length)];
+
+        // Store profileImage and userEmails directly in the user's document in the 'userProfile' field
+        await admin.firestore().collection("users").doc(user.uid).set({
+            userProfile: {
+                profileImage: randomProfileImage,
+                userEmail: user.email,
+            },
+        }, { merge: true }); // Use merge to avoid overwriting existing fields, if any
+
+        // If you have additional logic, add it here
+
+    } catch (error) {
+        console.error("Error handling new user creation:", error);
+    }
+});
+
+// Simple HTTP function for testing
+exports.helloWorld = onRequest((req, res) => {
+    res.send("Hello from Firebase!");
+});
