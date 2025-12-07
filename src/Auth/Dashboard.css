@@ -24,6 +24,14 @@
     font-weight: 700;
 }
 
+.dashboard-profile-image {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 0 auto 1rem auto;
+}
+
 .dashboard-email {
     margin: 1rem 0 0 0;
     color: #666;

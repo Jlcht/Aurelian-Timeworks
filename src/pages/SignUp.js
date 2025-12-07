@@ -58,7 +58,7 @@ const SignUp = () => {
 
     const handlePasswordlessSignIn = async (e) => {
         e.preventDefault();
-        setErrorMsg('');
+        setErrorMsg(''); 
         setInfoMsg('');
         if (!email) {
             setErrorMsg('Please enter your email address.');
