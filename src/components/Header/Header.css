@@ -1,15 +1,15 @@
-.header { 
-    display:flex; 
-    justify-content:space-between; 
-    align-items:center; 
-    padding:20px 40px; 
-    background:var(--color-bg); 
-    border-bottom:1px solid var(--color-border);
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    background: var(--color-bg);
+    border-bottom: 1px solid var(--color-border);
 }
 
-.header-left { 
-    display:flex; 
-    align-items:center;
+.header-left {
+    display: flex;
+    align-items: center;
 }
 
 .header-title-link {
@@ -17,39 +17,39 @@
     color: inherit;
 }
 
-.header-logo { 
-    width:36px; 
-    margin-right:10px;
+.header-logo {
+    width: 36px;
+    margin-right: 10px;
 }
 
-.header-nav { 
+.header-nav {
     display: flex;
     align-items: center;
     gap: 24px;
 }
 
-.header-nav a { 
-    font-weight:500; 
-    text-decoration:none; 
-    color:var(--color-text);
+.header-nav a {
+    font-weight: 500;
+    text-decoration: none;
+    color: var(--color-text);
     transition: color 0.2s ease;
 }
 
 .header-nav a:hover {
-    color: #667eea;
+    color: var(--color-text);
 }
 
 .header-signin-button {
     padding: 0.5rem 1.25rem;
     border-radius: 8px;
     font-weight: 600;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white !important;
+    background: var(--color-fade);
+    color: var(--color-bg) !important;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .header-signin-button:hover {
     transform: translateY(-2px);
     box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
-    color: white !important;
+    color: var(--color-bg) !important;
 }

@@ -2,6 +2,7 @@
 import { initializeApp } from 'firebase/app';
 import { getFirestore, doc, getDoc, onSnapshot, connectFirestoreEmulator } from 'firebase/firestore';
 import { getAuth, GoogleAuthProvider, signInWithRedirect, signInWithEmailLink, isSignInWithEmailLink, sendSignInLinkToEmail, connectAuthEmulator } from 'firebase/auth';
+import { getStorage, ref, uploadBytes, getDownloadURL, connectStorageEmulator } from 'firebase/storage';
 
 // Firebase configuration
 const firebaseConfig = {
@@ -21,10 +22,12 @@ const app = initializeApp(firebaseConfig);
 const firestore = getFirestore(app);
 const auth = getAuth(app);
 const db = getFirestore(app);
+const storage = getStorage(app);
 
 if (process.env.NODE_ENV === 'development') {
   connectAuthEmulator(auth, "http://localhost:9099");
   connectFirestoreEmulator(db, "localhost", 8080);
+  connectStorageEmulator(storage, "localhost", 9199);
 }
 
 // Google Auth Provider
@@ -34,4 +37,4 @@ const googleProvider = new GoogleAuthProvider();
 
 
 // Export everything
-export { app, db, auth, onSnapshot, doc, getDoc, googleProvider, sendSignInLinkToEmail, signInWithRedirect, signInWithEmailLink, isSignInWithEmailLink };
+export { app, db, auth, storage, onSnapshot, doc, getDoc, googleProvider, sendSignInLinkToEmail, signInWithRedirect, signInWithEmailLink, isSignInWithEmailLink, ref, uploadBytes, getDownloadURL };

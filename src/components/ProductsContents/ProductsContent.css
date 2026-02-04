@@ -1,0 +1,239 @@
+/* Products Content Container */
+.products-content {
+    flex: 1;
+    padding: 40px 60px;
+    background: #f8f9fa;
+    min-height: 100vh;
+}
+
+/* Header */
+.products-header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.products-header h2 {
+    font-size: 2.5rem;
+    font-weight: 300;
+    color: #2c3e50;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+}
+
+.products-subtitle {
+    font-size: 1.1rem;
+    color: #7f8c8d;
+    font-weight: 300;
+}
+
+/* Products Grid */
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* Product Card */
+.product-card {
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    display: flex;
+    flex-direction: column;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+/* Product Badge */
+.product-badge {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background: white;
+    color: #2c3e50;
+    padding: 6px 14px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    z-index: 2;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    letter-spacing: 0.5px;
+}
+
+/* Favorite Button */
+.product-favorite {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 2;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.product-favorite svg {
+    font-size: 1.1rem;
+    color: #95a5a6;
+    transition: all 0.3s ease;
+}
+
+.product-favorite:hover svg {
+    color: #e74c3c;
+    transform: scale(1.1);
+}
+
+.product-favorite.active svg {
+    color: #e74c3c;
+}
+
+/* Product Image */
+.product-image-container {
+    width: 100%;
+    height: 350px;
+    background: linear-gradient(135deg, #f5f7fa 0%, #e8ecef 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+}
+
+.product-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.product-card:hover .product-image {
+    transform: scale(1.05);
+}
+
+/* Product Info */
+.product-info {
+    padding: 25px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.product-name {
+    font-size: 1.25rem;
+    font-weight: 400;
+    color: #2c3e50;
+    margin: 0 0 8px 0;
+    letter-spacing: 0.3px;
+    line-height: 1.4;
+}
+
+.product-description {
+    font-size: 0.9rem;
+    color: #7f8c8d;
+    margin: 0 0 15px 0;
+    font-weight: 300;
+    letter-spacing: 0.3px;
+}
+
+.product-price {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #2c3e50;
+    margin: 0;
+    letter-spacing: 0.5px;
+}
+
+/* CTA Button */
+.product-cta {
+    margin: 0 25px 25px 25px;
+    padding: 14px 24px;
+    background: #2c3e50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.product-cta:hover {
+    background: #34495e;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(44, 62, 80, 0.3);
+}
+
+.product-cta:active {
+    transform: translateY(0);
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .products-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 25px;
+    }
+
+    .products-content {
+        padding: 30px 40px;
+    }
+}
+
+@media (max-width: 768px) {
+    .products-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .products-content {
+        padding: 20px;
+    }
+
+    .products-header h2 {
+        font-size: 2rem;
+    }
+
+    .product-image-container {
+        height: 300px;
+    }
+}
+
+/* Loading Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.product-card {
+    animation: fadeIn 0.5s ease-out;
+}
+
+.product-card:nth-child(1) { animation-delay: 0.1s; }
+.product-card:nth-child(2) { animation-delay: 0.2s; }
+.product-card:nth-child(3) { animation-delay: 0.3s; }
+.product-card:nth-child(4) { animation-delay: 0.4s; }
+.product-card:nth-child(5) { animation-delay: 0.5s; }
+.product-card:nth-child(6) { animation-delay: 0.6s; }

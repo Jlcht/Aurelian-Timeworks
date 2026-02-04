@@ -39,7 +39,4 @@ exports.onUserCreate = functions.auth.user().onCreate(async (user) => {
     }
 });
 
-// Simple HTTP function for testing
-exports.helloWorld = onRequest((req, res) => {
-    res.send("Hello from Firebase!");
-});
+

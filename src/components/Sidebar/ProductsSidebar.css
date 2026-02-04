@@ -1,15 +1,15 @@
-.docs-sidebar {
+.products-sidebar {
     width:250px;
     border-right:1px solid var(--color-border);
     padding:40px 20px;
     background:var(--color-bg);
 }
 
-.docs-sidebar ul li {
+.products-sidebar ul li {
     margin:12px 0;
 }
 
-.docs-sidebar a {
+.products-sidebar a {
     text-decoration:none;
     color:var(--color-text);
     font-weight:500;

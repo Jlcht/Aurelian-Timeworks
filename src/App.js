@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import { AuthProvider, useAuth } from './AuthContext';
 import Homepage from './pages/Homepage';
 import SignUp from './pages/SignUp';
+import Products from './pages/Products';
 import Dashboard from './Auth/Dashboard';
 import './App.css';
 
@@ -28,6 +29,7 @@ const App = () => {
                 <Routes>
                     <Route path="/" element={<Homepage />} />
                     <Route path="/signup" element={<SignUp />} />
+                    <Route path="/products" element={<Products />} />
                     <Route
                         path="/dashboard"
                         element={
