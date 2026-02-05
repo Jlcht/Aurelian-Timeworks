@@ -2,10 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { signOut } from 'firebase/auth';
 import { auth } from '../firebase';
 import './AdminDashboard.css';
+import Header from '../components/Header/Header';
+import Footer from '../components/Footer/Footer';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../AuthContext';
 
 const AdminDashboard = () => {
   const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(true); 
   const [error, setError] = useState(null);
   const [editingId, setEditingId] = useState(null);
 
@@ -114,7 +118,25 @@ const AdminDashboard = () => {
 
   // Handle Delete
   const handleDelete = async (id) => {
-    // ... (existing code)
+    if (!window.confirm('Are you sure you want to delete this product?')) return;
+    
+    try {
+      const headers = await getAuthHeader();
+      const res = await fetch(`${API_URL}/${id}`, {
+        method: 'DELETE',
+        headers
+      });
+      
+      const data = await res.json();
+      if (data.success) {
+        fetchProducts(); // Refresh list
+      } else {
+        alert(data.error || 'Delete failed');
+      }
+    } catch (err) {
+      console.error(err);
+      alert('Failed to delete');
+    }
   };
 
   // Handle Sign Out
@@ -141,18 +163,32 @@ const AdminDashboard = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  if (loading && products.length === 0) return <div className="admin-dashboard-container">Loading...</div>;
+  if (loading && products.length === 0) {
+    return (
+      <>
+        <Header />
+        <div className="admin-dashboard-container">
+          <div className="admin-dashboard-content">
+            <p>Loading...</p>
+          </div>
+        </div>
+        <Footer />
+      </>
+    );
+  }
 
   return (
-    <div className="admin-dashboard-container">
-      <div className="admin-dashboard-content">
-        <h1>
+    <>
+      <Header />
+      <div className="admin-dashboard-container">
+        <div className="admin-dashboard-content">
+          <h1>
             Admin Dashboard <span className="admin-badge">Admin</span>
             <div className="header-actions">
-                <button onClick={fetchProducts} className="refresh-btn">Refresh</button>
-                <button onClick={handleSignOut} className="signout-btn">Sign Out</button>
+              <button onClick={fetchProducts} className="refresh-btn">Refresh</button>
+              <button onClick={handleSignOut} className="signout-btn">Sign Out</button>
             </div>
-        </h1>
+          </h1>
 
         {/* Form Section */}
         <div className="admin-form-container">
@@ -289,8 +325,10 @@ const AdminDashboard = () => {
             </tbody>
           </table>
         </div>
+        </div>
       </div>
-    </div>
+      <Footer />
+    </>
   );
 };
 

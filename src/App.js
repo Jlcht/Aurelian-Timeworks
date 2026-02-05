@@ -1,11 +1,14 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider, useAuth } from './AuthContext';
+import { CartProvider } from './CartContext';
 import Homepage from './pages/Homepage';
 import SignUp from './pages/SignUp';
 import Products from './pages/Products';
 import Dashboard from './Auth/Dashboard';
 import AdminDashboard from './Auth/AdminDashboard';
+import Cart from './pages/Cart';
+import Wishlist from './pages/Wishlist';
 import './App.css';
 
 // Inline PrivateRoute implementation
@@ -39,23 +42,37 @@ const DashboardRouter = () => {
 
 const App = () => {
     return (
-        <AuthProvider>
-            <Router>
-                <Routes>
-                    <Route path="/" element={<Homepage />} />
-                    <Route path="/signup" element={<SignUp />} />
-                    <Route path="/products" element={<Products />} />
-                    <Route
-                        path="/dashboard"
-                        element={
-                            <PrivateRoute>
-                                <DashboardRouter />
-                            </PrivateRoute>
-                        }
-                    />
-                </Routes>
-            </Router>
-        </AuthProvider>
+        <CartProvider>
+            <AuthProvider>
+                <Router>
+                    <Routes>
+                        <Route path="/" element={<Homepage />} />
+                        <Route path="/signup" element={<SignUp />} />
+                        <Route path="/products" element={<Products />} />
+                        <Route
+                            path="/dashboard"
+                            element={
+                                <PrivateRoute>
+                                    <DashboardRouter />
+                                </PrivateRoute>
+                            }
+                        />
+                        <Route
+                            path="/cart"
+                            element={<Cart />}
+                        />
+                        <Route
+                            path="/wishlist"
+                            element={
+                                <PrivateRoute>
+                                    <Wishlist />
+                                </PrivateRoute>
+                            }
+                        />
+                    </Routes>
+                </Router>
+            </AuthProvider>
+        </CartProvider>
     );
 };
 
