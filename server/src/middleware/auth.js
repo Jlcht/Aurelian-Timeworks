@@ -1,5 +1,5 @@
 // Authentication Middleware
-const { auth } = require('../config/firebase');
+const { auth, db } = require('../config/firebase');
 
 /**
  * Middleware to verify Firebase ID token
@@ -23,11 +23,16 @@ const authenticate = async (req, res, next) => {
     // Verify token with Firebase Admin
     const decodedToken = await auth.verifyIdToken(token);
     
+    // Fetch user role from Firestore
+    const userDoc = await db.collection('users').doc(decodedToken.uid).get();
+    const userData = userDoc.data();
+    const userRole = userData ? userData.role : 'customer';
+
     // Attach user info to request
     req.user = {
       uid: decodedToken.uid,
       email: decodedToken.email,
-      role: decodedToken.role || 'customer', // Default role
+      role: userRole, 
     };
 
     next();

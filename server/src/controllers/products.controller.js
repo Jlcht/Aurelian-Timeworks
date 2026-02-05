@@ -10,13 +10,22 @@ const { validationResult } = require('express-validator');
  * - Fetch all products from Firestore 'products' collection
  * - Support pagination (optional)
  * - Support filtering by category (optional)
- * - Return array of products
+ * - Return array of products    
  */
 const getAllProducts = async (req, res, next) => {
   try {
     // Fetch all products from Firestore
     const snapshot = await db.collection('products').get();
-    const products = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+    const products = snapshot.docs.map(doc => {
+      const data = doc.data();
+      return {
+        id: doc.id,
+        ...data,
+        // Convert Firestore Timestamp to readable JS Date
+        createdAt: data.createdAt ? data.createdAt.toDate() : null,
+        updatedAt: data.updatedAt ? data.updatedAt.toDate() : null,
+      };
+    });
     
     res.json({ 
       success: true, 
@@ -50,6 +59,10 @@ const getProductById = async (req, res, next) => {
       });
     }
     
+    // Convert Timestamps
+    if (product.createdAt) product.createdAt = product.createdAt.toDate();
+    if (product.updatedAt) product.updatedAt = product.updatedAt.toDate();
+
     res.json({
       success: true,
       data: {id: req.params.id, ...product},
@@ -89,20 +102,24 @@ const createProduct = async (req, res, next) => {
 
     // TODO: Your code here
     // Hint: Use db.collection('products').add({ ...productData, createdAt: new Date() })
+    const { name, description, price, stock, category, images } = req.body;
+    const newProduct = {
+      name,
+      description,
+      price,
+      stock,
+      // Use null or empty string if undefined, as Firestore doesn't accept undefined
+      category: category || null, 
+      images: images || [],     
+      createdAt: new Date(),
+    };
+    const product = await db.collection('products').add(newProduct);
     
-    res.status(501).json({
-      success: false,
-      error: 'Not implemented yet. This is for you to build!',
-      hint: 'Use db.collection("products").add() to create a product',
-      expectedBody: {
-        name: 'Product Name',
-        description: 'Product Description',
-        price: 29.99,
-        stock: 100,
-        category: 'electronics',
-        images: ['url1', 'url2'],
-      },
+    res.status(201).json({
+      success: true,
+      data: {id: product.id, ...newProduct},
     });
+
   } catch (error) {
     next(error);
   }
@@ -131,11 +148,29 @@ const updateProduct = async (req, res, next) => {
 
     // TODO: Your code here
     // Hint: Use db.collection('products').doc(id).update({ ...updates, updatedAt: new Date() })
+    const docRef = db.collection('products').doc(req.params.id);
+    const doc = await docRef.get();
+    if (!doc.exists) {
+      return res.status(404).json({
+        success: false,
+        error: 'Product not found',
+      });
+    }
+
+    const updatedProduct = { updatedAt: new Date() };
+    const allowedUpdates = ['name', 'description', 'price', 'stock', 'category', 'images'];
     
-    res.status(501).json({
-      success: false,
-      error: 'Not implemented yet. This is for you to build!',
-      hint: 'Use db.collection("products").doc(id).update() to update a product',
+    allowedUpdates.forEach(field => {
+      if (req.body[field] !== undefined) {
+        updatedProduct[field] = req.body[field];
+      }
+    });
+
+    await docRef.update(updatedProduct);
+    
+    res.status(200).json({
+      success: true,
+      data: {id: req.params.id, ...updatedProduct},
     });
   } catch (error) {
     next(error);
@@ -156,11 +191,20 @@ const deleteProduct = async (req, res, next) => {
   try {
     // TODO: Your code here
     // Hint: Use db.collection('products').doc(id).delete()
+    const docRef = db.collection('products').doc(req.params.id);
+    const doc = await docRef.get();
+    if (!doc.exists) {
+      return res.status(404).json({
+        success: false,
+        error: 'Product not found',
+      });
+    }
+
+    const deletedProduct = await docRef.delete();
     
-    res.status(501).json({
-      success: false,
-      error: 'Not implemented yet. This is for you to build!',
-      hint: 'Use db.collection("products").doc(id).delete() to delete a product',
+    res.status(200).json({
+      success: true,
+      message: 'Product deleted successfully',
     });
   } catch (error) {
     next(error);

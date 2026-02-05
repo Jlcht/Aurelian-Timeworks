@@ -5,6 +5,7 @@ import Homepage from './pages/Homepage';
 import SignUp from './pages/SignUp';
 import Products from './pages/Products';
 import Dashboard from './Auth/Dashboard';
+import AdminDashboard from './Auth/AdminDashboard';
 import './App.css';
 
 // Inline PrivateRoute implementation
@@ -22,6 +23,20 @@ const PrivateRoute = ({ children }) => {
     return children;
 };
 
+// Route user to correct dashboard based on role
+const DashboardRouter = () => {
+    const { userRole } = useAuth();
+    
+    // While loading or if no role yet, you might show a spinner, 
+    // but PrivateRoute handles main loading. 
+    // If we're here, we are logged in.
+    
+    if (userRole === 'admin') {
+        return <AdminDashboard />;
+    }
+    return <Dashboard />;
+};
+
 const App = () => {
     return (
         <AuthProvider>
@@ -34,7 +49,7 @@ const App = () => {
                         path="/dashboard"
                         element={
                             <PrivateRoute>
-                                <Dashboard />
+                                <DashboardRouter />
                             </PrivateRoute>
                         }
                     />

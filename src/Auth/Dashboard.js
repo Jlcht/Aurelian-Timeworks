@@ -3,7 +3,7 @@ import Header from '../components/Header/Header';
 import Footer from '../components/Footer/Footer';
 import { useAuth } from '../AuthContext';
 import { useNavigate } from 'react-router-dom';
-import { auth, storage, ref, uploadBytes, getDownloadURL } from '../firebase';
+import { auth, db, doc, onSnapshot, storage, ref, uploadBytes, getDownloadURL } from '../firebase';
 import { signOut } from 'firebase/auth';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faSave, faTimes, faUser, faMapMarkerAlt, faInfoCircle, faCamera, faUpload } from '@fortawesome/free-solid-svg-icons';
@@ -14,7 +14,7 @@ const Dashboard = () => {
     const navigate = useNavigate();   
     const fileInputRef = useRef(null);
     const [userProfile, setUserProfile] = useState({
-        profileImage: '',
+        profileImage: currentUser?.photoURL || '',
         userEmail: '',
         displayName: '',
         bio: '',
@@ -44,44 +44,49 @@ const Dashboard = () => {
         }
     };
 
-    // Fetch user profile using Python Cloud Function
+    // Subscribe to user profile using Firestore real-time listener
     useEffect(() => {
-        const fetchUserProfile = async () => {
-            const user = auth.currentUser;
-            if (!user) {
-                setLoading(false);
-                return;
-            }
+        const user = currentUser || auth.currentUser;
+        if (!user) {
+            setLoading(false);
+            return;
+        }
 
-            try {
-                const response = await fetch(
-                    `${API_BASE_URL}/manage_user_profile?userId=${user.uid}`
-                );
-                const data = await response.json();
-
-                if (response.ok && data.success) {
-                    const profile = data.profile.userProfile || {};
+        const unsubscribe = onSnapshot(
+            doc(db, 'users', user.uid),
+            (docSnapshot) => {
+                if (docSnapshot.exists()) {
+                    const data = docSnapshot.data();
+                    const profile = data.userProfile || {};
+                    
                     setUserProfile({
-                        profileImage: profile.profileImage || '',
+                        profileImage: profile.profileImage || user.photoURL || '',
                         userEmail: user.email,
-                        displayName: profile.displayName || '',
+                        displayName: profile.displayName || user.displayName || '',
                         bio: profile.bio || '',
                         location: profile.location || ''
                     });
                 } else {
-                    // Profile doesn't exist yet, use defaults
-                    setUserProfile(prev => ({ ...prev, userEmail: user.email }));
+                    // Profile doesn't exist yet (or cloud function hasn't run), use defaults
+                    setUserProfile({
+                        profileImage: user.photoURL || '',
+                        userEmail: user.email,
+                        displayName: user.displayName || '',
+                        bio: '',
+                        location: ''
+                    });
                 }
-            } catch (error) {
+                setLoading(false);
+            },
+            (error) => {
                 console.error('Error fetching user profile:', error);
                 setError('Failed to load profile');
-            } finally {
                 setLoading(false);
             }
-        };
+        );
 
-        fetchUserProfile();
-    }, [API_BASE_URL]);
+        return () => unsubscribe();
+    }, [currentUser]);
 
     const handleEditClick = () => {
         setEditedProfile({ ...userProfile });

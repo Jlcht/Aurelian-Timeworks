@@ -12,9 +12,9 @@ const {
 const { authenticate, requireAdmin } = require('../middleware/auth');
 
 /**
- * Validation rules for product creation/update
+ * Validation rules for product creation (All required)
  */
-const productValidation = [
+const createValidation = [
   body('name')
     .trim()
     .notEmpty()
@@ -50,6 +50,48 @@ const productValidation = [
 ];
 
 /**
+ * Validation rules for product updates (All optional)
+ */
+const updateValidation = [
+  body('name')
+    .optional()
+    .trim()
+    .notEmpty()
+    .withMessage('Product name cannot be empty')
+    .isLength({ min: 3, max: 100 })
+    .withMessage('Product name must be between 3 and 100 characters'),
+  
+  body('description')
+    .optional()
+    .trim()
+    .notEmpty()
+    .withMessage('Product description cannot be empty')
+    .isLength({ min: 10 })
+    .withMessage('Product description must be at least 10 characters'),
+  
+  body('price')
+    .optional()
+    .isFloat({ min: 0.01 })
+    .withMessage('Price must be a positive number'),
+  
+  body('stock')
+    .optional()
+    .isInt({ min: 0 })
+    .withMessage('Stock must be a non-negative integer'),
+  
+  body('category')
+    .optional()
+    .trim()
+    .notEmpty()
+    .withMessage('Category cannot be empty if provided'),
+  
+  body('images')
+    .optional()
+    .isArray()
+    .withMessage('Images must be an array of URLs'),
+];
+
+/**
  * @route   GET /api/products
  * @desc    Get all products
  * @access  Public
@@ -68,14 +110,14 @@ router.get('/:id', getProductById);
  * @desc    Create new product
  * @access  Private (Admin only)
  */
-router.post('/', authenticate, requireAdmin, productValidation, createProduct);
+router.post('/', authenticate, requireAdmin, createValidation, createProduct);
 
 /**
  * @route   PUT /api/products/:id
  * @desc    Update existing product
  * @access  Private (Admin only)
  */
-router.put('/:id', authenticate, requireAdmin, productValidation, updateProduct);
+router.put('/:id', authenticate, requireAdmin, updateValidation, updateProduct);
 
 /**
  * @route   DELETE /api/products/:id

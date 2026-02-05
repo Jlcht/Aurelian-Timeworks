@@ -1,0 +1,244 @@
+/* Reuse variables from :root (defined in global CSS files like Homepage.css) */
+/* Or fallback if not loaded */
+
+.admin-dashboard-container {
+    min-height: calc(100vh - 200px);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Start from top for long content */
+    padding: 2rem;
+    background: var(--color-fade); /* Use the gradient variable */
+}
+
+/* Main Content Card */
+.admin-dashboard-content {
+    background: var(--color-bg);
+    padding: 3rem;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    max-width: 1200px; /* Wider than user dashboard for table */
+    width: 100%;
+    animation: slideIn 0.5s ease-out;
+    margin-top: 2rem; /* Spacing from top */
+}
+
+@keyframes slideIn {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.admin-dashboard-content h1 {
+    margin: 0 0 2rem 0;
+    color: var(--color-text);
+    font-size: 2.5rem;
+    font-weight: 700;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+/* Refresh Button */
+.refresh-btn {
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    background: rgba(102, 126, 234, 0.1);
+    color: #667eea;
+    border: 1px solid rgba(102, 126, 234, 0.3);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.refresh-btn:hover {
+    background: rgba(102, 126, 234, 0.2);
+    transform: translateY(-2px);
+}
+
+/* Form Styles - Matching User Dashboard Input Style */
+.admin-form-container {
+    background: var(--color-accent-light); /* Light blue accent background */
+    padding: 2rem;
+    border-radius: 12px;
+    margin-bottom: 2rem;
+    border: 1px solid var(--color-border);
+}
+
+.admin-form-container h2 {
+    color: var(--color-accent); /* Blue */
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+}
+
+.admin-form-group {
+    margin-bottom: 1.2rem;
+}
+
+.admin-form-group label {
+    display: block;
+    font-weight: 600;
+    color: var(--color-text);
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+}
+
+.admin-input, 
+.admin-textarea, 
+.admin-select {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 2px solid var(--color-border);
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    font-family: inherit;
+    background: #fff;
+    color: var(--color-text);
+}
+
+.admin-input:focus,
+.admin-textarea:focus,
+.admin-select:focus {
+    outline: none;
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 3px rgba(0, 102, 255, 0.1);
+}
+
+.admin-textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.admin-submit-btn {
+    background: var(--color-accent);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+    box-shadow: 0 4px 15px rgba(0, 102, 255, 0.3);
+}
+
+.admin-submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 102, 255, 0.4);
+    filter: brightness(1.1);
+}
+
+.admin-cancel-btn {
+    background: var(--color-border);
+    color: var(--color-text);
+    width: 100%;
+    padding: 0.75rem;
+    margin-top: 0.5rem;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.admin-cancel-btn:hover {
+    background: #d1d5db;
+}
+
+/* Table Styles */
+.products-list-container {
+    overflow-x: auto;
+}
+
+.products-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+
+.products-table th {
+    background: #f8fafc;
+    color: #4a5568;
+    font-weight: 600;
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 2px solid var(--color-border);
+}
+
+.products-table td {
+    padding: 1rem;
+    border-bottom: 1px solid var(--color-border);
+    color: var(--color-text);
+    vertical-align: middle;
+}
+
+.products-table tr:hover {
+    background-color: #f7fafc;
+}
+
+.product-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.action-btn {
+    padding: 0.4rem 0.8rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-weight: 600;
+    transition: transform 0.2s;
+}
+
+.action-btn:hover {
+    transform: translateY(-1px);
+}
+
+.edit-btn {
+    background: rgba(0, 102, 255, 0.1);
+    color: var(--color-accent);
+}
+
+.delete-btn {
+    background: rgba(239, 68, 68, 0.1);
+    color: #ef4444;
+}
+
+/* Badge for Role */
+.admin-badge {
+    background: #fed7aa;
+    color: #9a3412;
+    padding: 0.2rem 0.6rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    vertical-align: middle;
+}
+
+/* Header Actions */
+.header-actions {
+    margin-left: auto; /* Push to right */
+    display: flex;
+    gap: 0.5rem;
+}
+
+.signout-btn {
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    background: rgba(245, 101, 101, 0.1);
+    color: #ef4444;
+    border: 1px solid rgba(245, 101, 101, 0.3);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.signout-btn:hover {
+    background: rgba(245, 101, 101, 0.2);
+    transform: translateY(-2px);
+}
