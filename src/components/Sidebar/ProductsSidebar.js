@@ -82,7 +82,6 @@ const ProductsSidebar = ({ filters, onFilterChange }) => {
                         onChange={(e) => handlePriceChange('min', e.target.value)}
                         className="price-input"
                     />
-                    <span className="price-separator">-</span>
                     <input
                         type="number"
                         placeholder="Max"

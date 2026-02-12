@@ -4,9 +4,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart as faHeartSolid } from '@fortawesome/free-solid-svg-icons';
 import { faHeart as faHeartRegular } from '@fortawesome/free-regular-svg-icons';
 import { useCart } from '../../CartContext';
+import { useWishlist } from '../../WishlistContext';
 
 const ProductsContent = ({ filters }) => {
-    const [favorites, setFavorites] = useState({});
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -14,6 +14,7 @@ const ProductsContent = ({ filters }) => {
     const [addedToCart, setAddedToCart] = useState({});
     
     const { addToCart } = useCart();
+    const { toggleWishlist, isInWishlist } = useWishlist();
 
     const API_URL = 'http://localhost:5000/api/products';
 
@@ -60,11 +61,8 @@ const ProductsContent = ({ filters }) => {
         return true;
     });
 
-    const toggleFavorite = (productId) => {
-        setFavorites(prev => ({
-            ...prev,
-            [productId]: !prev[productId]
-        }));
+    const handleToggleFavorite = (product) => {
+        toggleWishlist(product);
     };
 
     const handleAddToCart = (product) => {
@@ -125,12 +123,12 @@ const ProductsContent = ({ filters }) => {
                         )}
                         
                         <button 
-                            className={`product-favorite ${favorites[product.id] ? 'active' : ''}`}
-                            onClick={() => toggleFavorite(product.id)}
-                            aria-label="Add to favorites"
+                            className={`product-favorite ${isInWishlist(product.id) ? 'active' : ''}`}
+                            onClick={() => handleToggleFavorite(product)}
+                            aria-label="Add to wishlist"
                         >
                             <FontAwesomeIcon 
-                                icon={favorites[product.id] ? faHeartSolid : faHeartRegular} 
+                                icon={isInWishlist(product.id) ? faHeartSolid : faHeartRegular} 
                             />
                         </button>
 
@@ -161,7 +159,6 @@ const ProductsContent = ({ filters }) => {
 
                         <div className="product-info">
                             <h3 className="product-name">{product.name}</h3>
-                            <p className="product-description">{product.description}</p>
                             <p className="product-price">€{product.price}</p>
                             {product.stock !== undefined && (
                                 <p className="product-stock" style={{

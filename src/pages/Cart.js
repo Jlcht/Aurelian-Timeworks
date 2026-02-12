@@ -80,7 +80,6 @@ const Cart = () => {
                                             <FontAwesomeIcon icon={faPlus} />
                                         </button>
                                     </div>
-                                    
                                     <button 
                                         onClick={() => removeFromCart(item.id)}
                                         className="remove-btn"

@@ -3,6 +3,12 @@
     border-right: 1px solid var(--color-border);
     padding: 40px 20px;
     background: var(--color-bg);
+    position: sticky;
+    top: 0;
+    height: fit-content;
+    max-height: 100vh;
+    overflow-y: auto;
+    align-self: flex-start;
 }
 
 /* Sidebar Header */
@@ -95,7 +101,7 @@
 /* Price Inputs */
 .price-inputs {
     display: flex;
-    align-items: center;
+    flex-direction: column;
     gap: 10px;
 }
 
