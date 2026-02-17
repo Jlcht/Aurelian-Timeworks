@@ -1,8 +1,10 @@
 :root {
-    --color-bg:#ffffff;
-    --color-text:#111111;
-    --color-accent:#0066ff;
-    --color-accent-light:#dce9ff;
-    --color-border:#e5e5e5;
-    --color-fade: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    /* Luxury Watch Brand Theme - Warm & Sophisticated */
+    --color-bg: #f9efd7;              /* Champagne cream background */
+    --color-text: #a60000;            /* Deep burgundy red */
+    --color-accent: #c9a961;          /* Luxurious gold accent */
+    --color-accent-light: #f5ead5;    /* Soft champagne highlight */
+    --color-border: #d4c4a8;          /* Warm taupe border */
+    --color-fade: linear-gradient(135deg, #a60000 0%, #c9a961 100%); /* Burgundy to gold gradient */
 }
+

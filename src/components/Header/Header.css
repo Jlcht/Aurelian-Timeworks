@@ -1,10 +1,16 @@
+/* Luxury Header - Piaget Inspired */
 .header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 40px;
+    padding: 30px 60px;
     background: var(--color-bg);
     border-bottom: 1px solid var(--color-border);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    backdrop-filter: blur(10px);
+    background: rgba(249, 239, 215, 0.95);
 }
 
 .header-left {
@@ -15,65 +21,110 @@
 .header-title-link {
     text-decoration: none;
     color: inherit;
+    display: flex;
+    align-items: center;
+    transition: opacity 0.3s ease;
+}
+
+.header-title-link:hover {
+    opacity: 0.8;
 }
 
 .header-logo {
-    width: 36px;
-    margin-right: 10px;
+    width: 40px;
+    margin-right: 15px;
+    transition: transform 0.3s ease;
+}
+
+.header-title-link:hover .header-logo {
+    transform: scale(1.05);
 }
 
 .header-nav {
     display: flex;
     align-items: center;
-    gap: 24px;
+    gap: 40px;
 }
 
 .header-nav a {
-    font-weight: 500;
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 0.9rem;
     text-decoration: none;
     color: var(--color-text);
-    transition: color 0.2s ease;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    position: relative;
+    padding: 8px 0;
+    transition: color 0.3s ease;
+}
+
+.header-nav a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%) scaleX(0);
+    width: 100%;
+    height: 1px;
+    background: var(--color-accent);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .header-nav a:hover {
-    color: var(--color-text);
+    color: var(--color-accent);
 }
 
+.header-nav a:hover::after {
+    transform: translateX(-50%) scaleX(1);
+}
+
+/* Refined Sign In Button */
 .header-signin-button {
-    padding: 0.5rem 1.25rem;
-    border-radius: 8px;
-    font-weight: 600;
-    background: var(--color-fade);
+    padding: 12px 32px;
+    border-radius: 2px;
+    font-weight: 500;
+    font-size: 0.85rem;
+    letter-spacing: 1.5px;
+    background: var(--color-accent);
     color: var(--color-bg) !important;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border: 1px solid var(--color-accent);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    text-transform: uppercase;
+}
+
+.header-signin-button::after {
+    display: none;
 }
 
 .header-signin-button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
-    color: var(--color-bg) !important;
+    background: transparent;
+    color: var(--color-accent) !important;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(201, 169, 97, 0.2);
 }
 
-/* Header Icons */
+/* Header Icons - Refined */
 .header-icons {
     display: flex;
     align-items: center;
-    gap: 16px;
-    margin-left: 8px;
-    padding-left: 16px;
+    gap: 20px;
+    margin-left: 20px;
+    padding-left: 20px;
     border-left: 1px solid var(--color-border);
 }
 
 .header-icon {
-    font-size: 1.25rem;
+    font-size: 1.2rem;
     color: var(--color-text);
-    transition: all 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 36px;
-    height: 36px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
+    cursor: pointer;
 }
 
 .header-icon:hover {
@@ -82,18 +133,18 @@
     transform: translateY(-2px);
 }
 
-/* Cart Badge */
+/* Cart Badge - Luxury Style */
 .cart-icon {
     position: relative;
 }
 
 .cart-badge {
     position: absolute;
-    top: -4px;
-    right: -4px;
-    background: #e74c3c;
-    color: white;
-    font-size: 0.7rem;
+    top: -2px;
+    right: -2px;
+    background: var(--color-text);
+    color: var(--color-bg);
+    font-size: 0.65rem;
     font-weight: 600;
     min-width: 18px;
     height: 18px;
@@ -102,5 +153,32 @@
     align-items: center;
     justify-content: center;
     padding: 2px;
+    letter-spacing: 0;
+    border: 2px solid var(--color-bg);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .header {
+        padding: 25px 40px;
+    }
+    
+    .header-nav {
+        gap: 30px;
+    }
+}
+
+@media (max-width: 768px) {
+    .header {
+        padding: 20px 30px;
+    }
+    
+    .header-nav a {
+        font-size: 0.8rem;
+    }
+    
+    .header-nav {
+        gap: 20px;
+    }
 }
 

@@ -1,27 +1,28 @@
-/* Dashboard Container */
+/* Luxury Dashboard - Piaget Inspired */
 .dashboard-container {
     min-height: calc(100vh - 200px);
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 2rem;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    padding: 80px 2rem;
+    background: var(--color-bg);
 }
 
 .dashboard-content {
     background: white;
-    padding: 3rem;
-    border-radius: 20px;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-    max-width: 700px;
+    padding: 60px;
+    border-radius: 0;
+    box-shadow: 0 1px 3px rgba(166, 0, 0, 0.08);
+    max-width: 800px;
     width: 100%;
-    animation: slideIn 0.5s ease-out;
+    animation: luxurySlideIn 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid var(--color-border);
 }
 
-@keyframes slideIn {
+@keyframes luxurySlideIn {
     from {
         opacity: 0;
-        transform: translateY(30px);
+        transform: translateY(40px);
     }
     to {
         opacity: 1;
@@ -30,83 +31,84 @@
 }
 
 .dashboard-content h1 {
-    margin: 0 0 2rem 0;
-    color: #2d3748;
+    margin: 0 0 50px 0;
+    color: var(--color-text);
+    font-family: 'Cormorant Garamond', serif;
     font-size: 2.5rem;
-    font-weight: 700;
+    font-weight: 300;
     text-align: center;
+    letter-spacing: 3px;
+    text-transform: uppercase;
 }
 
-/* Alert Messages */
+/* Refined Alert Messages */
 .dashboard-error {
-    background: #fee;
-    color: #c33;
-    padding: 1rem;
-    border-radius: 8px;
-    margin-bottom: 1.5rem;
-    border-left: 4px solid #c33;
-    animation: shake 0.5s;
+    background: rgba(166, 0, 0, 0.05);
+    color: var(--color-text);
+    padding: 20px;
+    border-radius: 0;
+    margin-bottom: 30px;
+    border-left: 3px solid var(--color-text);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
 }
 
 .dashboard-success {
-    background: #efe;
-    color: #3c3;
-    padding: 1rem;
-    border-radius: 8px;
-    margin-bottom: 1.5rem;
-    border-left: 4px solid #3c3;
-    animation: slideIn 0.3s;
+    background: rgba(201, 169, 97, 0.1);
+    color: var(--color-accent);
+    padding: 20px;
+    border-radius: 0;
+    margin-bottom: 30px;
+    border-left: 3px solid var(--color-accent);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
 }
 
-@keyframes shake {
-    0%, 100% { transform: translateX(0); }
-    25% { transform: translateX(-10px); }
-    75% { transform: translateX(10px); }
-}
-
-/* Profile Section */
+/* Elegant Profile Section */
 .dashboard-profile-section {
-    margin-bottom: 2rem;
+    margin-bottom: 40px;
 }
 
 .dashboard-profile-image-container {
     display: flex;
     justify-content: center;
-    margin-bottom: 2rem;
+    margin-bottom: 40px;
 }
 
 .dashboard-profile-image {
-    width: 150px;
-    height: 150px;
+    width: 160px;
+    height: 160px;
     border-radius: 50%;
     object-fit: cover;
-    border: 5px solid #667eea;
-    box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 3px solid var(--color-border);
+    box-shadow: 0 4px 16px rgba(166, 0, 0, 0.1);
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.4s ease;
 }
 
 .dashboard-profile-image:hover {
-    transform: scale(1.05);
-    box-shadow: 0 15px 40px rgba(102, 126, 234, 0.4);
+    transform: scale(1.03);
+    box-shadow: 0 8px 24px rgba(166, 0, 0, 0.15);
 }
 
 .dashboard-profile-placeholder {
-    width: 150px;
-    height: 150px;
+    width: 160px;
+    height: 160px;
     border-radius: 50%;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, var(--color-accent-light) 0%, var(--color-accent) 100%);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    color: white;
-    border: 5px solid #667eea;
-    box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+    color: var(--color-text);
+    border: 3px solid var(--color-border);
+    box-shadow: 0 4px 16px rgba(166, 0, 0, 0.1);
     gap: 1rem;
     position: relative;
 }
 
-/* Image Upload Wrapper */
+/* Premium Image Upload Wrapper */
 .dashboard-image-wrapper {
     position: relative;
     display: inline-block;
@@ -115,23 +117,26 @@
 .dashboard-change-photo-btn,
 .dashboard-upload-photo-btn {
     margin-top: 1rem;
-    padding: 0.5rem 1rem;
-    background: rgba(102, 126, 234, 0.9);
-    color: white;
-    border: none;
-    border-radius: 20px;
-    font-size: 0.85rem;
-    font-weight: 600;
+    padding: 10px 20px;
+    background: transparent;
+    color: var(--color-text);
+    border: 1px solid var(--color-text);
+    border-radius: 0;
+    font-size: 0.75rem;
+    font-weight: 500;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 8px;
+    font-family: 'Inter', sans-serif;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
 }
 
 .dashboard-change-photo-btn {
     position: absolute;
-    bottom: -10px;
+    bottom: -15px;
     left: 50%;
     transform: translateX(-50%);
     white-space: nowrap;
@@ -139,24 +144,24 @@
 
 .dashboard-upload-photo-btn {
     background: white;
-    color: #667eea;
-    border: 2px solid white;
+    color: var(--color-text);
+    border: 1px solid var(--color-text);
 }
 
 .dashboard-change-photo-btn:hover,
 .dashboard-upload-photo-btn:hover {
+    background: var(--color-text);
+    color: var(--color-bg);
     transform: translateX(-50%) translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 .dashboard-upload-photo-btn:hover {
     transform: translateY(-2px);
-    background: rgba(255, 255, 255, 0.9);
 }
 
 .dashboard-change-photo-btn:disabled,
 .dashboard-upload-photo-btn:disabled {
-    opacity: 0.6;
+    opacity: 0.4;
     cursor: not-allowed;
     transform: translateX(-50%);
 }
@@ -165,20 +170,21 @@
     transform: none;
 }
 
-/* Profile Info */
+/* Luxury Profile Info */
 .dashboard-profile-info {
-    background: #f7fafc;
-    padding: 2rem;
-    border-radius: 12px;
-    margin-bottom: 1.5rem;
+    background: var(--color-accent-light);
+    padding: 35px;
+    border-radius: 0;
+    margin-bottom: 30px;
+    border: 1px solid var(--color-border);
 }
 
 .dashboard-info-item {
     display: flex;
     align-items: center;
-    gap: 1rem;
-    padding: 0.75rem 0;
-    border-bottom: 1px solid #e2e8f0;
+    gap: 20px;
+    padding: 15px 0;
+    border-bottom: 1px solid var(--color-border);
 }
 
 .dashboard-info-item:last-child {
@@ -191,168 +197,198 @@
 }
 
 .dashboard-icon {
-    color: #667eea;
+    color: var(--color-accent);
     width: 20px;
 }
 
 .dashboard-label {
-    font-weight: 600;
-    color: #4a5568;
-    min-width: 80px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    color: var(--color-text);
+    min-width: 100px;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
 }
 
 .dashboard-value {
-    color: #2d3748;
+    font-family: 'Inter', sans-serif;
+    color: var(--color-text);
     flex: 1;
+    font-weight: 300;
+    letter-spacing: 0.3px;
 }
 
 .dashboard-bio .dashboard-value {
-    margin-top: 0.5rem;
-    line-height: 1.6;
+    margin-top: 10px;
+    line-height: 1.7;
 }
 
-/* Edit Form */
+/* Refined Edit Form */
 .dashboard-edit-form {
-    animation: fadeIn 0.3s ease-out;
+    animation: luxuryFadeIn 0.4s ease-out;
 }
 
-@keyframes fadeIn {
+@keyframes luxuryFadeIn {
     from { opacity: 0; }
     to { opacity: 1; }
 }
 
 .dashboard-form-group {
-    margin-bottom: 1.5rem;
+    margin-bottom: 25px;
 }
 
 .dashboard-form-group label {
     display: block;
-    font-weight: 600;
-    color: #4a5568;
-    margin-bottom: 0.5rem;
-    font-size: 0.95rem;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    color: var(--color-text);
+    margin-bottom: 10px;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
 }
 
 .dashboard-input,
 .dashboard-textarea {
     width: 100%;
-    padding: 0.75rem 1rem;
-    border: 2px solid #e2e8f0;
-    border-radius: 8px;
-    font-size: 1rem;
+    padding: 14px 18px;
+    border: 1px solid var(--color-border);
+    border-radius: 0;
+    font-size: 0.95rem;
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
-    font-family: inherit;
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    letter-spacing: 0.3px;
 }
 
 .dashboard-input:focus,
 .dashboard-textarea:focus {
     outline: none;
-    border-color: #667eea;
-    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 3px rgba(201, 169, 97, 0.1);
 }
 
 .dashboard-textarea {
     resize: vertical;
-    min-height: 100px;
+    min-height: 120px;
+    line-height: 1.7;
 }
 
 .dashboard-hint {
     display: block;
-    margin-top: 0.5rem;
-    color: #718096;
-    font-size: 0.85rem;
+    margin-top: 8px;
+    color: var(--color-text);
+    font-size: 0.8rem;
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    letter-spacing: 0.3px;
+    opacity: 0.6;
 }
 
-/* Buttons */
+/* Premium Buttons */
 .dashboard-button-group {
     display: flex;
-    gap: 1rem;
-    margin-top: 2rem;
+    gap: 15px;
+    margin-top: 40px;
 }
 
 .dashboard-edit-btn,
 .dashboard-save-btn,
 .dashboard-cancel-btn,
 .dashboard-signout-btn {
-    padding: 0.75rem 1.5rem;
-    border: none;
-    border-radius: 8px;
-    font-weight: 600;
-    font-size: 1rem;
+    padding: 16px 32px;
+    border: 1px solid var(--color-text);
+    border-radius: 0;
+    font-weight: 500;
+    font-size: 0.85rem;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 10px;
     justify-content: center;
+    font-family: 'Inter', sans-serif;
+    letter-spacing: 2px;
+    text-transform: uppercase;
 }
 
 .dashboard-edit-btn {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
+    background: transparent;
+    color: var(--color-text);
     width: 100%;
-    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+    box-shadow: none;
 }
 
 .dashboard-edit-btn:hover {
+    background: var(--color-text);
+    color: var(--color-bg);
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
+    box-shadow: 0 6px 20px rgba(166, 0, 0, 0.2);
 }
 
 .dashboard-save-btn {
-    background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
-    color: white;
+    background: var(--color-accent);
+    color: var(--color-bg);
+    border-color: var(--color-accent);
     flex: 1;
-    box-shadow: 0 4px 15px rgba(72, 187, 120, 0.4);
+    box-shadow: none;
 }
 
 .dashboard-save-btn:hover:not(:disabled) {
+    background: transparent;
+    color: var(--color-accent);
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(72, 187, 120, 0.5);
+    box-shadow: 0 6px 20px rgba(201, 169, 97, 0.2);
 }
 
 .dashboard-save-btn:disabled {
-    opacity: 0.6;
+    opacity: 0.4;
     cursor: not-allowed;
 }
 
 .dashboard-cancel-btn {
-    background: #e2e8f0;
-    color: #4a5568;
+    background: transparent;
+    color: var(--color-text);
+    border-color: var(--color-border);
     flex: 1;
 }
 
 .dashboard-cancel-btn:hover:not(:disabled) {
-    background: #cbd5e0;
+    background: var(--color-text);
+    color: var(--color-bg);
+    border-color: var(--color-text);
     transform: translateY(-2px);
 }
 
 .dashboard-cancel-btn:disabled {
-    opacity: 0.6;
+    opacity: 0.4;
     cursor: not-allowed;
 }
 
 .dashboard-signout-btn {
-    background: linear-gradient(135deg, #f56565 0%, #c53030 100%);
-    color: white;
+    background: transparent;
+    color: var(--color-text);
     width: 100%;
-    margin-top: 1rem;
-    box-shadow: 0 4px 15px rgba(245, 101, 101, 0.4);
+    margin-top: 20px;
+    box-shadow: none;
 }
 
 .dashboard-signout-btn:hover {
+    background: var(--color-text);
+    color: var(--color-bg);
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(245, 101, 101, 0.5);
+    box-shadow: 0 6px 20px rgba(166, 0, 0, 0.2);
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
     .dashboard-container {
-        padding: 1rem;
+        padding: 60px 1rem;
     }
 
     .dashboard-content {
-        padding: 2rem 1.5rem;
+        padding: 40px 30px;
     }
 
     .dashboard-content h1 {
@@ -361,8 +397,8 @@
 
     .dashboard-profile-image,
     .dashboard-profile-placeholder {
-        width: 120px;
-        height: 120px;
+        width: 140px;
+        height: 140px;
     }
 
     .dashboard-button-group {

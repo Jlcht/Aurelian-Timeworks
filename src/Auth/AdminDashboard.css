@@ -1,101 +1,119 @@
-/* Reuse variables from :root (defined in global CSS files like Homepage.css) */
-/* Or fallback if not loaded */
+/* Luxury Admin Dashboard - Piaget Inspired */
 
 .admin-dashboard-container {
     min-height: calc(100vh - 200px);
     display: flex;
     justify-content: center;
-    align-items: flex-start; /* Start from top for long content */
-    padding: 2rem;
-    background: var(--color-fade); /* Use the gradient variable */
+    align-items: flex-start;
+    padding: 80px 2rem;
+    background: var(--color-bg);
 }
 
 /* Main Content Card */
 .admin-dashboard-content {
-    background: var(--color-bg);
-    padding: 3rem;
-    border-radius: 20px;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-    max-width: 1200px; /* Wider than user dashboard for table */
+    background: white;
+    padding: 60px;
+    border-radius: 0;
+    box-shadow: 0 1px 3px rgba(166, 0, 0, 0.08);
+    max-width: 1400px;
     width: 100%;
-    animation: slideIn 0.5s ease-out;
-    margin-top: 2rem; /* Spacing from top */
+    animation: luxurySlideIn 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    margin-top: 2rem;
+    border: 1px solid var(--color-border);
 }
 
-@keyframes slideIn {
-    from { opacity: 0; transform: translateY(30px); }
+@keyframes luxurySlideIn {
+    from { opacity: 0; transform: translateY(40px); }
     to { opacity: 1; transform: translateY(0); }
 }
 
 .admin-dashboard-content h1 {
-    margin: 0 0 2rem 0;
+    margin: 0 0 50px 0;
     color: var(--color-text);
+    font-family: 'Cormorant Garamond', serif;
     font-size: 2.5rem;
-    font-weight: 700;
+    font-weight: 300;
     text-align: center;
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 1rem;
+    gap: 20px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
 }
 
-/* Refresh Button */
+/* Refined Refresh Button */
 .refresh-btn {
-    font-size: 1rem;
-    padding: 0.5rem 1rem;
-    background: rgba(102, 126, 234, 0.1);
-    color: #667eea;
-    border: 1px solid rgba(102, 126, 234, 0.3);
-    border-radius: 8px;
+    font-size: 0.8rem;
+    padding: 10px 20px;
+    background: transparent;
+    color: var(--color-text);
+    border: 1px solid var(--color-border);
+    border-radius: 0;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
 }
 
 .refresh-btn:hover {
-    background: rgba(102, 126, 234, 0.2);
+    background: var(--color-text);
+    color: var(--color-bg);
+    border-color: var(--color-text);
     transform: translateY(-2px);
 }
 
-/* Form Styles - Matching User Dashboard Input Style */
+/* Premium Form Styles */
 .admin-form-container {
-    background: var(--color-accent-light); /* Light blue accent background */
-    padding: 2rem;
-    border-radius: 12px;
-    margin-bottom: 2rem;
+    background: var(--color-accent-light);
+    padding: 40px;
+    border-radius: 0;
+    margin-bottom: 40px;
     border: 1px solid var(--color-border);
 }
 
 .admin-form-container h2 {
-    color: var(--color-accent); /* Blue */
+    color: var(--color-text);
     margin-top: 0;
-    margin-bottom: 1.5rem;
-    font-size: 1.5rem;
+    margin-bottom: 30px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem;
+    font-weight: 400;
+    letter-spacing: 2px;
+    text-transform: uppercase;
 }
 
 .admin-form-group {
-    margin-bottom: 1.2rem;
+    margin-bottom: 25px;
 }
 
 .admin-form-group label {
     display: block;
-    font-weight: 600;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
     color: var(--color-text);
-    margin-bottom: 0.5rem;
-    font-size: 0.95rem;
+    margin-bottom: 10px;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
 }
 
 .admin-input, 
 .admin-textarea, 
 .admin-select {
     width: 100%;
-    padding: 0.75rem 1rem;
-    border: 2px solid var(--color-border);
-    border-radius: 8px;
-    font-size: 1rem;
+    padding: 14px 18px;
+    border: 1px solid var(--color-border);
+    border-radius: 0;
+    font-size: 0.95rem;
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
-    font-family: inherit;
+    font-family: 'Inter', sans-serif;
     background: #fff;
     color: var(--color-text);
+    font-weight: 300;
+    letter-spacing: 0.3px;
 }
 
 .admin-input:focus,
@@ -103,52 +121,63 @@
 .admin-select:focus {
     outline: none;
     border-color: var(--color-accent);
-    box-shadow: 0 0 0 3px rgba(0, 102, 255, 0.1);
+    box-shadow: 0 0 0 3px rgba(201, 169, 97, 0.1);
 }
 
 .admin-textarea {
     resize: vertical;
-    min-height: 100px;
+    min-height: 120px;
+    line-height: 1.7;
 }
 
 .admin-submit-btn {
-    background: var(--color-accent);
-    color: white;
-    padding: 0.75rem 1.5rem;
-    border: none;
-    border-radius: 8px;
-    font-weight: 600;
-    font-size: 1rem;
+    background: var(--color-text);
+    color: var(--color-bg);
+    padding: 16px 32px;
+    border: 1px solid var(--color-text);
+    border-radius: 0;
+    font-weight: 500;
+    font-size: 0.85rem;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     width: 100%;
-    box-shadow: 0 4px 15px rgba(0, 102, 255, 0.3);
+    box-shadow: none;
+    font-family: 'Inter', sans-serif;
+    letter-spacing: 2px;
+    text-transform: uppercase;
 }
 
 .admin-submit-btn:hover {
+    background: transparent;
+    color: var(--color-text);
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(0, 102, 255, 0.4);
-    filter: brightness(1.1);
+    box-shadow: 0 6px 20px rgba(166, 0, 0, 0.2);
 }
 
 .admin-cancel-btn {
-    background: var(--color-border);
+    background: transparent;
     color: var(--color-text);
+    border: 1px solid var(--color-border);
     width: 100%;
-    padding: 0.75rem;
-    margin-top: 0.5rem;
-    border: none;
-    border-radius: 8px;
-    font-weight: 600;
+    padding: 14px;
+    margin-top: 10px;
+    border-radius: 0;
+    font-weight: 500;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    font-family: 'Inter', sans-serif;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    font-size: 0.8rem;
 }
 
 .admin-cancel-btn:hover {
-    background: #d1d5db;
+    background: var(--color-text);
+    color: var(--color-bg);
+    border-color: var(--color-text);
 }
 
-/* Table Styles */
+/* Luxury Table Styles */
 .products-list-container {
     overflow-x: auto;
 }
@@ -156,42 +185,53 @@
 .products-table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 1rem;
+    margin-top: 20px;
 }
 
 .products-table th {
-    background: #f8fafc;
-    color: #4a5568;
-    font-weight: 600;
-    padding: 1rem;
+    background: var(--color-accent-light);
+    color: var(--color-text);
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    padding: 18px 20px;
     text-align: left;
     border-bottom: 2px solid var(--color-border);
+    font-size: 0.8rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
 }
 
 .products-table td {
-    padding: 1rem;
+    padding: 20px;
     border-bottom: 1px solid var(--color-border);
     color: var(--color-text);
     vertical-align: middle;
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    font-size: 0.9rem;
+    letter-spacing: 0.3px;
 }
 
 .products-table tr:hover {
-    background-color: #f7fafc;
+    background-color: var(--color-accent-light);
 }
 
 .product-actions {
     display: flex;
-    gap: 0.5rem;
+    gap: 10px;
 }
 
 .action-btn {
-    padding: 0.4rem 0.8rem;
-    border: none;
-    border-radius: 6px;
+    padding: 8px 16px;
+    border: 1px solid;
+    border-radius: 0;
     cursor: pointer;
-    font-size: 0.85rem;
-    font-weight: 600;
-    transition: transform 0.2s;
+    font-size: 0.75rem;
+    font-weight: 500;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    font-family: 'Inter', sans-serif;
+    letter-spacing: 1px;
+    text-transform: uppercase;
 }
 
 .action-btn:hover {
@@ -199,46 +239,108 @@
 }
 
 .edit-btn {
-    background: rgba(0, 102, 255, 0.1);
+    background: transparent;
     color: var(--color-accent);
+    border-color: var(--color-accent);
+}
+
+.edit-btn:hover {
+    background: var(--color-accent);
+    color: var(--color-bg);
 }
 
 .delete-btn {
-    background: rgba(239, 68, 68, 0.1);
-    color: #ef4444;
+    background: transparent;
+    color: var(--color-text);
+    border-color: var(--color-text);
 }
 
-/* Badge for Role */
+.delete-btn:hover {
+    background: var(--color-text);
+    color: var(--color-bg);
+}
+
+/* Refined Badge for Role */
 .admin-badge {
-    background: #fed7aa;
-    color: #9a3412;
-    padding: 0.2rem 0.6rem;
-    border-radius: 20px;
-    font-size: 0.8rem;
+    background: var(--color-accent);
+    color: var(--color-bg);
+    padding: 4px 12px;
+    border-radius: 0;
+    font-size: 0.7rem;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
+    letter-spacing: 1px;
     vertical-align: middle;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
 }
 
 /* Header Actions */
 .header-actions {
-    margin-left: auto; /* Push to right */
+    margin-left: auto;
     display: flex;
-    gap: 0.5rem;
+    gap: 10px;
 }
 
 .signout-btn {
-    font-size: 1rem;
-    padding: 0.5rem 1rem;
-    background: rgba(245, 101, 101, 0.1);
-    color: #ef4444;
-    border: 1px solid rgba(245, 101, 101, 0.3);
-    border-radius: 8px;
+    font-size: 0.8rem;
+    padding: 10px 20px;
+    background: transparent;
+    color: var(--color-text);
+    border: 1px solid var(--color-text);
+    border-radius: 0;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
 }
 
 .signout-btn:hover {
-    background: rgba(245, 101, 101, 0.2);
+    background: var(--color-text);
+    color: var(--color-bg);
     transform: translateY(-2px);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .admin-dashboard-content {
+        padding: 50px 40px;
+    }
+}
+
+@media (max-width: 768px) {
+    .admin-dashboard-container {
+        padding: 60px 1rem;
+    }
+
+    .admin-dashboard-content {
+        padding: 40px 25px;
+        margin-top: 1rem;
+    }
+
+    .admin-dashboard-content h1 {
+        font-size: 2rem;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .admin-form-container {
+        padding: 30px 20px;
+    }
+
+    .products-table th,
+    .products-table td {
+        padding: 12px;
+        font-size: 0.85rem;
+    }
+
+    .product-actions {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .action-btn {
+        width: 100%;
+    }
 }
