@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from '../components/Header/Header';
 import Footer from '../components/Footer/Footer';
+import boutiqueImg from '../assets/images/aurelian-t-front-boutique.png';
 import './About.css';
 
 const values = [
@@ -67,6 +68,13 @@ const About = () => {
                             authenticated, documented, and presented with the same care as in a physical
                             haute horlogerie salon.
                         </p>
+                    </div>
+                    <div className="about-hero-image-wrap">
+                        <img
+                            src={boutiqueImg}
+                            alt="Aurelian Timeworks boutique storefront"
+                            className="about-hero-image"
+                        />
                     </div>
                 </section>
 

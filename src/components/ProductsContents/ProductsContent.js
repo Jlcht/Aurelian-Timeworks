@@ -5,6 +5,8 @@ import { faHeart as faHeartSolid } from '@fortawesome/free-solid-svg-icons';
 import { faHeart as faHeartRegular } from '@fortawesome/free-regular-svg-icons';
 import { useCart } from '../../CartContext';
 import { useWishlist } from '../../WishlistContext';
+import { db } from '../../firebase';
+import { collection, onSnapshot, orderBy, query } from 'firebase/firestore';
 
 const ProductsContent = ({ filters }) => {
     const [products, setProducts] = useState([]);
@@ -16,29 +18,23 @@ const ProductsContent = ({ filters }) => {
     const { addToCart } = useCart();
     const { toggleWishlist, isInWishlist } = useWishlist();
 
-    const API_URL = 'http://localhost:5000/api/products';
-
-    // Fetch products from backend
+    // Real-time listener — automatically reflects admin changes
     useEffect(() => {
-        const fetchProducts = async () => {
-            try {
-                const res = await fetch(API_URL);
-                const data = await res.json();
-                
-                if (data.success) {
-                    setProducts(data.data);
-                } else {
-                    setError('Failed to load products');
-                }
-            } catch (err) {
+        const q = query(collection(db, 'products'), orderBy('createdAt', 'desc'));
+        const unsubscribe = onSnapshot(
+            q,
+            (snapshot) => {
+                const data = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+                setProducts(data);
+                setLoading(false);
+            },
+            (err) => {
                 console.error('Error fetching products:', err);
                 setError('Failed to load products');
-            } finally {
                 setLoading(false);
             }
-        };
-
-        fetchProducts();
+        );
+        return () => unsubscribe();
     }, []);
 
     // Filter products based on filters

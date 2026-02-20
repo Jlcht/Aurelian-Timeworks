@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { signOut } from 'firebase/auth';
-import { auth } from '../firebase';
+import { auth, db } from '../firebase';
+import { collection, onSnapshot, orderBy, query } from 'firebase/firestore';
 import './AdminDashboard.css';
 import Header from '../components/Header/Header';
 import Footer from '../components/Footer/Footer';
@@ -23,26 +24,27 @@ const AdminDashboard = () => {
     images: '' // Comma separated for now
   });
 
-  const API_URL = 'http://localhost:5000/api/products';
+  // Firebase Function base URL (switches automatically between dev/prod)
+  const FUNC_URL = process.env.NODE_ENV === 'development'
+    ? 'http://127.0.0.1:5001/backend-app-jl/us-central1/manage_products'
+    : 'https://us-central1-backend-app-jl.cloudfunctions.net/manage_products';
 
-  // Fetch Products
-  const fetchProducts = async () => {
-    try {
-      const res = await fetch(API_URL);
-      const data = await res.json();
-      if (data.success) {
-        setProducts(data.data);
-      }
-    } catch (err) {
-      setError('Failed to fetch products');
-      console.error(err);
-    } finally {
-      setLoading(false);
-    }
-  };
-
+  // Real-time product list from Firestore
   useEffect(() => {
-    fetchProducts();
+    const q = query(collection(db, 'products'), orderBy('createdAt', 'desc'));
+    const unsubscribe = onSnapshot(
+      q,
+      (snapshot) => {
+        setProducts(snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })));
+        setLoading(false);
+      },
+      (err) => {
+        setError('Failed to fetch products');
+        console.error(err);
+        setLoading(false);
+      }
+    );
+    return () => unsubscribe();
   }, []);
 
   // Handle Input Change
@@ -53,10 +55,10 @@ const AdminDashboard = () => {
     });
   };
 
-  // Get Auth Header
+  // Get Auth Header (with admin token)
   const getAuthHeader = async () => {
     const user = auth.currentUser;
-    if (!user) return {};
+    if (!user) throw new Error('Not authenticated');
     const token = await user.getIdToken();
     return {
       'Authorization': `Bearer ${token}`,
@@ -78,7 +80,8 @@ const AdminDashboard = () => {
         images: formData.images ? formData.images.split(',').map(url => url.trim()) : []
       };
 
-      const url = editingId ? `${API_URL}/${editingId}` : API_URL;
+      // PUT uses ?id= query param, POST goes to base URL
+      const url = editingId ? `${FUNC_URL}?id=${editingId}` : FUNC_URL;
       const method = editingId ? 'PUT' : 'POST';
 
       const res = await fetch(url, {
@@ -90,27 +93,16 @@ const AdminDashboard = () => {
       const data = await res.json();
       
       if (!data.success) {
-        // Handle validation errors specifically if needed
-        if (data.errors) {
-            const errorMsg = data.errors.map(e => e.msg).join('\n');
-            throw new Error(errorMsg);
-        }
         throw new Error(data.error || 'Operation failed');
       }
 
-      // Reset form and refresh list
-      setFormData({
-        name: '', description: '', price: '', stock: '', category: '', images: ''
-      });
+      // Reset form (Firestore listener will auto-refresh the list)
+      setFormData({ name: '', description: '', price: '', stock: '', category: '', images: '' });
       setEditingId(null);
-      fetchProducts();
-      alert(editingId ? 'Product Updated! 🎉' : 'Product Created! 🚀');
+      alert(editingId ? 'Product Updated!' : 'Product Created!');
 
     } catch (err) {
       alert(`Error:\n${err.message}`);
-      if (err.message.includes('Product not found')) {
-        fetchProducts(); 
-      }
     } finally {
       setLoading(false);
     }
@@ -122,17 +114,16 @@ const AdminDashboard = () => {
     
     try {
       const headers = await getAuthHeader();
-      const res = await fetch(`${API_URL}/${id}`, {
+      const res = await fetch(`${FUNC_URL}?id=${id}`, {
         method: 'DELETE',
         headers
       });
       
       const data = await res.json();
-      if (data.success) {
-        fetchProducts(); // Refresh list
-      } else {
+      if (!data.success) {
         alert(data.error || 'Delete failed');
       }
+      // Firestore listener auto-refreshes the list
     } catch (err) {
       console.error(err);
       alert('Failed to delete');
@@ -169,7 +160,7 @@ const AdminDashboard = () => {
         <Header />
         <div className="admin-dashboard-container">
           <div className="admin-dashboard-content">
-            <p>Loading...</p>
+            <p>Loading products...</p>
           </div>
         </div>
         <Footer />
@@ -185,7 +176,6 @@ const AdminDashboard = () => {
           <h1>
             Admin Dashboard <span className="admin-badge">Admin</span>
             <div className="header-actions">
-              <button onClick={fetchProducts} className="refresh-btn">Refresh</button>
               <button onClick={handleSignOut} className="signout-btn">Sign Out</button>
             </div>
           </h1>
@@ -200,7 +190,7 @@ const AdminDashboard = () => {
                 className="admin-input"
                 type="text" name="name" required 
                 value={formData.name} onChange={handleChange} 
-                placeholder="Ex: Gaming Mouse"
+                placeholder="Ex: Automatic Watch"
               />
             </div>
             
@@ -237,10 +227,11 @@ const AdminDashboard = () => {
                 <label>Category</label>
                 <select className="admin-select" name="category" value={formData.category} onChange={handleChange}>
                     <option value="">Select Category</option>
-                    <option value="electronics">Electronics</option>
-                    <option value="clothing">Clothing</option>
-                    <option value="books">Books</option>
-                    <option value="home">Home</option>
+                    <option value="Dive">Dive</option>
+                    <option value="Dress">Dress</option>
+                    <option value="Chronograph">Chronograph</option>
+                    <option value="Sport">Sport</option>
+                    <option value="Field">Field</option>
                 </select>
                 </div>
             </div>

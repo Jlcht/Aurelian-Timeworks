@@ -30,6 +30,7 @@ const Header = () => {
                 <nav className="header-nav header-nav-left">
                     <Link to="/">Home</Link>
                     <Link to="/products">Products</Link>
+                    <Link to="/about">About Us</Link>
                 </nav>
 
                 {/* Center: Brand */}

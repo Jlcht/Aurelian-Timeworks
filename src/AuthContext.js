@@ -20,8 +20,12 @@ export const AuthProvider = ({ children }) => {
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, async (user) => {
+            // Set user immediately so PrivateRoute unblocks right away
+            setCurrentUser(user);
+            setLoading(false);
+
             if (user) {
-                // Fetch role from Firestore
+                // Fetch role from Firestore in the background
                 try {
                     const userDocRef = doc(db, 'users', user.uid);
                     const userDoc = await getDoc(userDocRef);
@@ -32,13 +36,11 @@ export const AuthProvider = ({ children }) => {
                     }
                 } catch (error) {
                     console.error("Error fetching user role:", error);
-                    setUserRole('customer'); // Default to customer on error
+                    setUserRole('customer');
                 }
             } else {
                 setUserRole(null);
             }
-            setCurrentUser(user);
-            setLoading(false);
         });
 
         return unsubscribe;
@@ -53,7 +55,7 @@ export const AuthProvider = ({ children }) => {
 
     return (
         <AuthContext.Provider value={value}>
-            {!loading && children}
+            {children}
         </AuthContext.Provider>
     );
 };
