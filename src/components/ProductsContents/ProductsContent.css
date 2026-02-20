@@ -1,0 +1,384 @@
+/* Luxury Products Content - Piaget Inspired */
+.products-content {
+    flex: 1;
+    padding: 80px 60px;
+    background: var(--color-bg);
+    min-height: 100vh;
+}
+
+/* Refined Header */
+.products-header {
+    text-align: center;
+    margin-bottom: 80px;
+}
+
+.products-header h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3rem;
+    font-weight: 300;
+    color: var(--color-text);
+    margin-bottom: 20px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+.products-subtitle {
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    color: var(--color-text);
+    font-weight: 300;
+    letter-spacing: 1px;
+    opacity: 0.7;
+}
+
+/* Premium Products Grid */
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 50px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* Luxury Product Card */
+.product-card {
+    background: white;
+    border-radius: 0;
+    overflow: hidden;
+    position: relative;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 1px 3px color-mix(in srgb, var(--color-text) 8%, transparent);
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--color-border);
+}
+
+.product-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 40px color-mix(in srgb, var(--color-text) 15%, transparent);
+}
+
+/* Refined Product Badge */
+.product-badge {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: var(--color-bg);
+    color: var(--color-text);
+    padding: 8px 18px;
+    border-radius: 0;
+    font-size: 0.7rem;
+    font-weight: 500;
+    z-index: 2;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    border: 1px solid var(--color-border);
+}
+
+/* Elegant Favorite Button */
+.product-favorite {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 2;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.product-favorite svg {
+    font-size: 1rem;
+    color: var(--color-text);
+    transition: all 0.3s ease;
+    opacity: 0.6;
+}
+
+.product-favorite:hover {
+    background: white;
+    transform: scale(1.05);
+}
+
+.product-favorite:hover svg {
+    color: var(--color-accent);
+    opacity: 1;
+}
+
+.product-favorite.active svg {
+    color: var(--color-text);
+    opacity: 1;
+}
+
+/* Premium Product Image */
+.product-image-container {
+    width: 100%;
+    height: 400px;
+    background: linear-gradient(135deg, var(--color-accent-light) 0%, #ffffff 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+}
+
+.product-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
+}
+
+.product-card:hover .product-image {
+    transform: scale(1.08);
+}
+
+/* Refined Image Indicators */
+.image-indicator {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    z-index: 3;
+}
+
+.image-indicator span {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: color-mix(in srgb, var(--color-text) 30%, transparent);
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.image-indicator span.active {
+    background: var(--color-text);
+    width: 20px;
+    border-radius: 3px;
+}
+
+/* Luxury Product Info */
+.product-info {
+    padding: 35px 30px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background: white;
+}
+
+.product-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    font-weight: 400;
+    color: var(--color-text);
+    margin: 0 0 12px 0;
+    letter-spacing: 1px;
+    line-height: 1.4;
+}
+
+.product-description {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.85rem;
+    color: var(--color-text);
+    margin: 0 0 20px 0;
+    font-weight: 300;
+    letter-spacing: 0.5px;
+    opacity: 0.7;
+    line-height: 1.6;
+}
+
+.product-price {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.15rem;
+    font-weight: 500;
+    color: var(--color-text);
+    margin: 0;
+    letter-spacing: 0.5px;
+}
+
+/* Premium CTA Button */
+.product-cta {
+    margin: 0 30px 30px 30px;
+    padding: 16px 28px;
+    background: transparent;
+    color: var(--color-text);
+    border: 1px solid var(--color-text);
+    border-radius: 0;
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-family: 'Inter', sans-serif;
+}
+
+.product-cta:hover {
+    background: var(--color-text);
+    color: var(--color-bg);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px color-mix(in srgb, var(--color-text) 25%, transparent);
+}
+
+.product-cta:active {
+    transform: translateY(0);
+}
+
+.product-cta.added {
+    background: var(--color-accent);
+    color: var(--color-bg);
+    border-color: var(--color-accent);
+}
+
+.product-cta.added:hover {
+    background: var(--color-accent);
+    opacity: 0.9;
+}
+
+.product-cta:disabled {
+    background: transparent;
+    color: var(--color-border);
+    border-color: var(--color-border);
+    cursor: not-allowed;
+    transform: none;
+}
+
+.product-cta:disabled:hover {
+    transform: none;
+    box-shadow: none;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .products-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 40px;
+    }
+
+    .products-content {
+        padding: 60px 40px;
+    }
+}
+
+@media (max-width: 768px) {
+    .products-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+
+    .products-content {
+        padding: 40px 16px;
+    }
+
+    .products-header h2 {
+        font-size: clamp(1.6rem, 5vw, 2.2rem);
+    }
+
+    .products-header {
+        margin-bottom: 40px;
+    }
+
+    .product-image-container {
+        height: 280px;
+    }
+
+    .product-info {
+        padding: 24px 20px;
+    }
+
+    .product-cta {
+        margin: 0 20px 20px;
+        padding: 13px 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .products-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+
+    .products-content {
+        padding: 32px 12px;
+    }
+
+    .product-image-container {
+        height: 260px;
+    }
+}
+
+/* Elegant Loading Animation */
+@keyframes luxuryFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.product-card {
+    animation: luxuryFadeIn 0.6s cubic-bezier(0.4, 0, 0.2, 1) backwards;
+}
+
+.product-card:nth-child(1) { animation-delay: 0.1s; }
+.product-card:nth-child(2) { animation-delay: 0.15s; }
+.product-card:nth-child(3) { animation-delay: 0.2s; }
+.product-card:nth-child(4) { animation-delay: 0.25s; }
+.product-card:nth-child(5) { animation-delay: 0.3s; }
+.product-card:nth-child(6) { animation-delay: 0.35s; }
+
+/* Refined States */
+.products-loading,
+.products-error,
+.products-empty {
+    text-align: center;
+    padding: 100px 20px;
+    margin: 60px auto;
+    max-width: 600px;
+}
+
+.products-loading p {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.1rem;
+    color: var(--color-text);
+    font-weight: 300;
+    letter-spacing: 1px;
+    opacity: 0.7;
+}
+
+.products-error {
+    background: color-mix(in srgb, var(--color-text) 5%, transparent);
+    border-left: 3px solid var(--color-text);
+    border-radius: 0;
+    padding: 40px;
+}
+
+.products-error p {
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    color: var(--color-text);
+    margin: 0;
+    letter-spacing: 0.5px;
+}
+
+.products-empty p {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.1rem;
+    color: var(--color-text);
+    font-weight: 300;
+    letter-spacing: 1px;
+    opacity: 0.6;
+}
+

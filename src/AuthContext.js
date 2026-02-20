@@ -1,6 +1,7 @@
 import React, { createContext, useState, useEffect, useContext } from 'react';
 import { onAuthStateChanged } from 'firebase/auth';
-import { auth } from './firebase';
+import { auth, db } from './firebase'; 
+import { doc, getDoc } from 'firebase/firestore'; 
 
 const AuthContext = createContext();
 
@@ -14,12 +15,32 @@ export const useAuth = () => {
 
 export const AuthProvider = ({ children }) => {
     const [currentUser, setCurrentUser] = useState(null);
+    const [userRole, setUserRole] = useState(null); // Add role state
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, (user) => {
+        const unsubscribe = onAuthStateChanged(auth, async (user) => {
+            // Set user immediately so PrivateRoute unblocks right away
             setCurrentUser(user);
             setLoading(false);
+
+            if (user) {
+                // Fetch role from Firestore in the background
+                try {
+                    const userDocRef = doc(db, 'users', user.uid);
+                    const userDoc = await getDoc(userDocRef);
+                    if (userDoc.exists()) {
+                        setUserRole(userDoc.data().role || 'customer');
+                    } else {
+                        setUserRole('customer');
+                    }
+                } catch (error) {
+                    console.error("Error fetching user role:", error);
+                    setUserRole('customer');
+                }
+            } else {
+                setUserRole(null);
+            }
         });
 
         return unsubscribe;
@@ -27,13 +48,14 @@ export const AuthProvider = ({ children }) => {
 
     const value = {
         currentUser,
+        userRole, // Expose role
         isLoggedIn: !!currentUser,
         loading
     };
 
     return (
         <AuthContext.Provider value={value}>
-            {!loading && children}
+            {children}
         </AuthContext.Provider>
     );
 };

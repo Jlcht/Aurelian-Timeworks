@@ -1,0 +1,424 @@
+/* ================================================
+   Products Sidebar — Swipeable Drawer
+   ================================================ */
+
+/* ── Floating toggle button ── */
+.sidebar-toggle-btn {
+    position: fixed;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    z-index: 1100;
+
+    /* Vertical column layout */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+
+    padding: 20px 10px;
+    width: 36px;
+
+    background: var(--color-text);
+    color: var(--color-bg);
+    border: none;
+    border-radius: 0 6px 6px 0;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.6rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    transition: background 0.25s ease, transform 0.25s ease,
+                left 0.38s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 3px 0 16px color-mix(in srgb, var(--color-text) 18%, transparent);
+    user-select: none;
+}
+
+.sidebar-toggle-btn:hover {
+    background: var(--color-accent);
+    transform: translateY(-50%) translateX(2px);
+}
+
+.sidebar-toggle-btn--open {
+    background: var(--color-accent);
+    left: 300px;
+}
+
+/* Icon inside vertical button — rotated back to read normally */
+.sidebar-toggle-icon {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    align-items: center;
+    font-size: 1rem;
+}
+
+.filter-bar {
+    display: block;
+    width: 14px;
+    height: 1.5px;
+    background: var(--color-bg);
+    border-radius: 2px;
+}
+
+.filter-bar--mid   { width: 10px; }
+.filter-bar--short { width: 6px; }
+
+.sidebar-toggle-label {
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    letter-spacing: 0.2em;
+    line-height: 1;
+    white-space: nowrap;
+    font-size: 0.6rem;
+}
+
+/* Active count badge */
+.sidebar-toggle-badge {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    background: var(--color-accent);
+    color: var(--color-bg);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.65rem;
+    font-weight: 600;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid var(--color-bg);
+    letter-spacing: 0;
+}
+
+/* ── Backdrop ── */
+.sidebar-backdrop {
+    position: fixed;
+    inset: 0;
+    background: color-mix(in srgb, var(--color-text) 45%, transparent);
+    z-index: 1050;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    backdrop-filter: blur(2px);
+}
+
+.sidebar-backdrop--visible {
+    opacity: 1;
+    pointer-events: all;
+}
+
+/* ── Drawer ── */
+.products-sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 300px;
+    height: 100vh;
+    background: var(--color-bg);
+    z-index: 1080;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding: 0 0 40px 0;
+
+    /* Start fully off-screen */
+    transform: translateX(-100%);
+    transition: transform 0.38s cubic-bezier(0.4, 0, 0.2, 1);
+
+    border-right: 1px solid var(--color-border);
+    box-shadow: 4px 0 32px color-mix(in srgb, var(--color-text) 12%, transparent);
+
+    /* Scrollbar */
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-border) transparent;
+}
+
+.products-sidebar::-webkit-scrollbar { width: 4px; }
+.products-sidebar::-webkit-scrollbar-thumb {
+    background: var(--color-border);
+    border-radius: 2px;
+}
+
+/* Slide in */
+.products-sidebar--open {
+    transform: translateX(0);
+}
+
+/* ── Drag handle pill (touch hint) ── */
+.sidebar-drag-handle {
+    width: 36px;
+    height: 4px;
+    background: var(--color-border);
+    border-radius: 2px;
+    margin: 14px auto 10px;
+}
+
+/* ── Sidebar Header ── */
+.sidebar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 24px 18px;
+    border-bottom: 1px solid var(--color-border);
+    position: sticky;
+    top: 0;
+    background: var(--color-bg);
+    z-index: 2;
+}
+
+.sidebar-header h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: var(--color-text);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin: 0;
+}
+
+.clear-filters-btn {
+    background: none;
+    border: none;
+    color: var(--color-text);
+    font-size: 0.75rem;
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    opacity: 0.5;
+    transition: opacity 0.2s ease;
+    padding: 4px 0;
+}
+
+.clear-filters-btn:hover {
+    opacity: 1;
+}
+
+/* ── Filter Sections ── */
+.filter-section {
+    padding: 24px;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.filter-section:last-of-type {
+    border-bottom: none;
+}
+
+.filter-section h4 {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 500;
+    color: var(--color-accent);
+    margin: 0 0 16px 0;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+}
+
+/* ── Checkboxes ── */
+.filter-options {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.filter-checkbox {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    gap: 0;
+    transition: padding-left 0.2s ease;
+}
+
+.filter-checkbox:hover {
+    padding-left: 4px;
+}
+
+.filter-checkbox input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 16px;
+    height: 16px;
+    border: 1px solid var(--color-border);
+    border-radius: 0;
+    margin-right: 12px;
+    flex-shrink: 0;
+    cursor: pointer;
+    position: relative;
+    transition: border-color 0.2s ease, background 0.2s ease;
+    background: transparent;
+}
+
+.filter-checkbox input[type="checkbox"]:checked {
+    background: var(--color-accent);
+    border-color: var(--color-accent);
+}
+
+.filter-checkbox input[type="checkbox"]:checked::after {
+    content: '';
+    position: absolute;
+    left: 4px;
+    top: 1px;
+    width: 5px;
+    height: 9px;
+    border: 1.5px solid var(--color-bg);
+    border-top: none;
+    border-left: none;
+    transform: rotate(45deg);
+}
+
+.checkbox-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 300;
+    color: var(--color-text);
+    letter-spacing: 0.3px;
+    user-select: none;
+    opacity: 0.8;
+    transition: opacity 0.2s ease;
+}
+
+.filter-checkbox:hover .checkbox-label,
+.filter-checkbox input:checked + .checkbox-label {
+    opacity: 1;
+    font-weight: 400;
+}
+
+/* ── Price Inputs ── */
+.price-inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.price-input {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1px solid var(--color-border);
+    border-radius: 0;
+    font-size: 0.9rem;
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    color: var(--color-text);
+    background: transparent;
+    transition: border-color 0.25s ease;
+    box-sizing: border-box;
+}
+
+.price-input:focus {
+    outline: none;
+    border-color: var(--color-accent);
+}
+
+.price-input::placeholder {
+    color: var(--color-border);
+}
+
+/* Remove number arrows */
+.price-input::-webkit-outer-spin-button,
+.price-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+.price-input[type=number] {
+    -moz-appearance: textfield;
+    appearance: textfield;
+}
+
+/* ── Apply button ── */
+.sidebar-apply-wrap {
+    padding: 24px;
+    position: sticky;
+    bottom: 0;
+    background: var(--color-bg);
+    border-top: 1px solid var(--color-border);
+    margin-top: auto;
+}
+
+.sidebar-apply-btn {
+    width: 100%;
+    padding: 14px;
+    background: var(--color-text);
+    color: var(--color-bg);
+    border: 1px solid var(--color-text);
+    border-radius: 0;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.sidebar-apply-btn:hover {
+    background: transparent;
+    color: var(--color-text);
+}
+
+/* ── Desktop: animate toggle button position when sidebar opens ── */
+@media (min-width: 769px) {
+    .sidebar-toggle-btn--open {
+        left: 300px;
+        transform: translateY(-50%);
+        border-radius: 0 6px 6px 0;
+    }
+}
+
+/* ── Mobile sidebar tweaks ── */
+@media (max-width: 768px) {
+    /* Reposition toggle to bottom-left fab */
+    .sidebar-toggle-btn {
+        top: auto;
+        bottom: 24px;
+        left: 16px;
+        transform: none;
+        width: auto;
+        flex-direction: row;
+        gap: 8px;
+        padding: 14px 18px;
+        border-radius: 50px;
+        font-size: 0.72rem;
+        box-shadow: 0 4px 20px color-mix(in srgb, var(--color-text) 25%, transparent);
+    }
+
+    .sidebar-toggle-btn:hover {
+        transform: translateY(-2px);
+    }
+
+    .sidebar-toggle-btn--open {
+        left: 16px;
+        bottom: 24px;
+    }
+
+    .sidebar-toggle-icon {
+        flex-direction: row;
+        gap: 2px;
+    }
+
+    .sidebar-toggle-label {
+        writing-mode: horizontal-tb;
+        letter-spacing: 0.15em;
+    }
+
+    /* Sidebar fills more width on smaller screens */
+    .products-sidebar {
+        width: min(300px, 88vw);
+    }
+}
+
+@media (max-width: 400px) {
+    .products-sidebar {
+        width: 100vw;
+        border-right: none;
+    }
+
+    .sidebar-toggle-btn {
+        bottom: 16px;
+        left: 12px;
+        padding: 12px 16px;
+    }
+}

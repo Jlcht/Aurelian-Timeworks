@@ -1,0 +1,346 @@
+/* Luxury Admin Dashboard - Piaget Inspired */
+
+.admin-dashboard-container {
+    min-height: calc(100vh - 200px);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 80px 2rem;
+    background: var(--color-bg);
+}
+
+/* Main Content Card */
+.admin-dashboard-content {
+    background: white;
+    padding: 60px;
+    border-radius: 0;
+    box-shadow: 0 1px 3px color-mix(in srgb, var(--color-text) 8%, transparent);
+    max-width: 1400px;
+    width: 100%;
+    animation: luxurySlideIn 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    margin-top: 2rem;
+    border: 1px solid var(--color-border);
+}
+
+@keyframes luxurySlideIn {
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.admin-dashboard-content h1 {
+    margin: 0 0 50px 0;
+    color: var(--color-text);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.5rem;
+    font-weight: 300;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+/* Refined Refresh Button */
+.refresh-btn {
+    font-size: 0.8rem;
+    padding: 10px 20px;
+    background: transparent;
+    color: var(--color-text);
+    border: 1px solid var(--color-border);
+    border-radius: 0;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
+
+.refresh-btn:hover {
+    background: var(--color-text);
+    color: var(--color-bg);
+    border-color: var(--color-text);
+    transform: translateY(-2px);
+}
+
+/* Premium Form Styles */
+.admin-form-container {
+    background: var(--color-accent-light);
+    padding: 40px;
+    border-radius: 0;
+    margin-bottom: 40px;
+    border: 1px solid var(--color-border);
+}
+
+.admin-form-container h2 {
+    color: var(--color-text);
+    margin-top: 0;
+    margin-bottom: 30px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem;
+    font-weight: 400;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.admin-form-group {
+    margin-bottom: 25px;
+}
+
+.admin-form-group label {
+    display: block;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    color: var(--color-text);
+    margin-bottom: 10px;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.admin-input, 
+.admin-textarea, 
+.admin-select {
+    width: 100%;
+    padding: 14px 18px;
+    border: 1px solid var(--color-border);
+    border-radius: 0;
+    font-size: 0.95rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    font-family: 'Inter', sans-serif;
+    background: white;
+    color: var(--color-text);
+    font-weight: 300;
+    letter-spacing: 0.3px;
+}
+
+.admin-input:focus,
+.admin-textarea:focus,
+.admin-select:focus {
+    outline: none;
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-accent) 10%, transparent);
+}
+
+.admin-textarea {
+    resize: vertical;
+    min-height: 120px;
+    line-height: 1.7;
+}
+
+.admin-submit-btn {
+    background: var(--color-text);
+    color: var(--color-bg);
+    padding: 16px 32px;
+    border: 1px solid var(--color-text);
+    border-radius: 0;
+    font-weight: 500;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    width: 100%;
+    box-shadow: none;
+    font-family: 'Inter', sans-serif;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.admin-submit-btn:hover {
+    background: transparent;
+    color: var(--color-text);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px color-mix(in srgb, var(--color-text) 20%, transparent);
+}
+
+.admin-cancel-btn {
+    background: transparent;
+    color: var(--color-text);
+    border: 1px solid var(--color-border);
+    width: 100%;
+    padding: 14px;
+    margin-top: 10px;
+    border-radius: 0;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    font-family: 'Inter', sans-serif;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+}
+
+.admin-cancel-btn:hover {
+    background: var(--color-text);
+    color: var(--color-bg);
+    border-color: var(--color-text);
+}
+
+/* Luxury Table Styles */
+.products-list-container {
+    overflow-x: auto;
+}
+
+.products-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.products-table th {
+    background: var(--color-accent-light);
+    color: var(--color-text);
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    padding: 18px 20px;
+    text-align: left;
+    border-bottom: 2px solid var(--color-border);
+    font-size: 0.8rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
+
+.products-table td {
+    padding: 20px;
+    border-bottom: 1px solid var(--color-border);
+    color: var(--color-text);
+    vertical-align: middle;
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    font-size: 0.9rem;
+    letter-spacing: 0.3px;
+}
+
+.products-table tr:hover {
+    background-color: var(--color-accent-light);
+}
+
+.product-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.action-btn {
+    padding: 8px 16px;
+    border: 1px solid;
+    border-radius: 0;
+    cursor: pointer;
+    font-size: 0.75rem;
+    font-weight: 500;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    font-family: 'Inter', sans-serif;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.action-btn:hover {
+    transform: translateY(-1px);
+}
+
+.edit-btn {
+    background: transparent;
+    color: var(--color-accent);
+    border-color: var(--color-accent);
+}
+
+.edit-btn:hover {
+    background: var(--color-accent);
+    color: var(--color-bg);
+}
+
+.delete-btn {
+    background: transparent;
+    color: var(--color-text);
+    border-color: var(--color-text);
+}
+
+.delete-btn:hover {
+    background: var(--color-text);
+    color: var(--color-bg);
+}
+
+/* Refined Badge for Role */
+.admin-badge {
+    background: var(--color-accent);
+    color: var(--color-bg);
+    padding: 4px 12px;
+    border-radius: 0;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    vertical-align: middle;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+}
+
+/* Header Actions */
+.header-actions {
+    margin-left: auto;
+    display: flex;
+    gap: 10px;
+}
+
+.signout-btn {
+    font-size: 0.8rem;
+    padding: 10px 20px;
+    background: transparent;
+    color: var(--color-text);
+    border: 1px solid var(--color-text);
+    border-radius: 0;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
+
+.signout-btn:hover {
+    background: var(--color-text);
+    color: var(--color-bg);
+    transform: translateY(-2px);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .admin-dashboard-content {
+        padding: 50px 40px;
+    }
+}
+
+@media (max-width: 768px) {
+    .admin-dashboard-container {
+        padding: 60px 1rem;
+    }
+
+    .admin-dashboard-content {
+        padding: 40px 25px;
+        margin-top: 1rem;
+    }
+
+    .admin-dashboard-content h1 {
+        font-size: 2rem;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .admin-form-container {
+        padding: 30px 20px;
+    }
+
+    .products-table th,
+    .products-table td {
+        padding: 12px;
+        font-size: 0.85rem;
+    }
+
+    .product-actions {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .action-btn {
+        width: 100%;
+    }
+}

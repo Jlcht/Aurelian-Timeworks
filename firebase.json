@@ -5,6 +5,12 @@
       "firebase.json",
       "**/.*",
       "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
     ]
   },
   "functions": [
@@ -19,6 +25,18 @@
         "*.local"
       ],
       "source": "functions"
+    },
+    {
+      "codebase": "python_functions",
+      "ignore": [
+        "venv",
+        ".git",
+        "firebase-debug.log",
+        "firebase-debug.*.log",
+        "*.local",
+        "__pycache__"
+      ],
+      "source": "python_functions"
     }
   ],
   "emulators": {
@@ -37,6 +55,9 @@
     "pubsub": {
       "port": 8085
     },
+    "storage": {
+      "port": 9199
+    },
     "ui": {
       "enabled": true,
       "port": 4000
@@ -47,5 +68,8 @@
     "location": "eur3",
     "rules": "firestore.rules",
     "indexes": "firestore.indexes.json"
+  },
+  "storage": {
+    "rules": "storage.rules"
   }
 }

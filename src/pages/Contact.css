@@ -1,0 +1,273 @@
+/* ================================================
+   Contact Page — Aurelian Timeworks
+   ================================================ */
+
+.contact-page {
+    background: var(--color-bg);
+    min-height: 100vh;
+    padding-bottom: 100px;
+}
+
+/* ── Header block ── */
+.contact-header {
+    padding: 100px 10% 70px;
+    max-width: 640px;
+    border-bottom: 1px solid var(--color-border);
+    margin-bottom: 80px;
+}
+
+.contact-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.68rem;
+    font-weight: 400;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    margin-bottom: 16px;
+}
+
+.contact-headline {
+    font-family: 'Cormorant Garamond', 'Georgia', serif;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: var(--color-text);
+    margin: 0 0 24px 0;
+    line-height: 1.05;
+}
+
+.contact-rule {
+    width: 48px;
+    height: 1px;
+    background: var(--color-accent);
+    margin-bottom: 24px;
+}
+
+.contact-sub {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 300;
+    line-height: 1.9;
+    color: var(--color-text);
+    opacity: 0.75;
+}
+
+/* ── Body: sidebar + form ── */
+.contact-body {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 80px;
+    padding: 0 10%;
+    max-width: 1200px;
+}
+
+/* ── Info sidebar ── */
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.contact-info-block {
+    border-top: 1px solid var(--color-border);
+    padding-top: 24px;
+}
+
+.contact-info-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.65rem;
+    font-weight: 400;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    margin-bottom: 10px;
+}
+
+.contact-info-value {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 300;
+    color: var(--color-text);
+    text-decoration: none;
+    line-height: 1.6;
+    display: block;
+    transition: color 0.3s ease;
+}
+
+.contact-info-value:hover {
+    color: var(--color-accent);
+}
+
+.contact-socials {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.contact-social-link {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 300;
+    color: var(--color-text);
+    text-decoration: none;
+    position: relative;
+    padding-left: 14px;
+    transition: color 0.3s ease;
+}
+
+.contact-social-link::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--color-accent);
+    font-size: 0.75rem;
+    top: 2px;
+}
+
+.contact-social-link:hover {
+    color: var(--color-accent);
+}
+
+/* ── Form ── */
+.contact-form-wrapper {
+    padding-top: 0;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+}
+
+.contact-form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+}
+
+.contact-field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.contact-field label {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.68rem;
+    font-weight: 400;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--color-text);
+    opacity: 0.6;
+}
+
+.contact-field input,
+.contact-field textarea {
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--color-border);
+    padding: 12px 0;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 300;
+    color: var(--color-text);
+    outline: none;
+    transition: border-color 0.3s ease;
+    resize: none;
+    box-sizing: border-box;
+}
+
+.contact-field input::placeholder,
+.contact-field textarea::placeholder {
+    color: var(--color-text);
+    opacity: 0.3;
+}
+
+.contact-field input:focus,
+.contact-field textarea:focus {
+    border-bottom-color: var(--color-accent);
+}
+
+/* ── Submit btn ── */
+.contact-submit {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    align-self: flex-start;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--color-bg);
+    background: var(--color-text);
+    border: 1px solid var(--color-text);
+    padding: 16px 36px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.contact-submit:hover {
+    background: transparent;
+    color: var(--color-text);
+}
+
+/* ── Success state ── */
+.contact-success {
+    text-align: center;
+    padding: 80px 40px;
+    border: 1px solid var(--color-border);
+}
+
+.contact-success-icon {
+    display: block;
+    font-size: 2rem;
+    color: var(--color-accent);
+    margin-bottom: 24px;
+}
+
+.contact-success h2 {
+    font-family: 'Cormorant Garamond', 'Georgia', serif;
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--color-text);
+    margin: 0 0 16px;
+}
+
+.contact-success p {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 300;
+    color: var(--color-text);
+    opacity: 0.7;
+    line-height: 1.8;
+}
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+    .contact-body {
+        grid-template-columns: 1fr;
+        gap: 50px;
+    }
+}
+
+@media (max-width: 600px) {
+    .contact-header { padding: 70px 6% 50px; }
+    .contact-body { padding: 0 6%; }
+    .contact-form-row { grid-template-columns: 1fr; }
+    .contact-page { padding-bottom: 60px; }
+}
+
+@media (max-width: 480px) {
+    .contact-header { padding: 50px 5% 36px; }
+    .contact-body { padding: 0 5%; }
+    .contact-header { margin-bottom: 50px; }
+    .contact-headline {
+        font-size: clamp(2rem, 8vw, 2.5rem);
+    }
+    .contact-submit {
+        width: 100%;
+        justify-content: center;
+    }
+}

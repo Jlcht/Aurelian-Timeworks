@@ -10,11 +10,12 @@ import {
     onAuthStateChanged,
     sendSignInLinkToEmail,
     isSignInWithEmailLink,
-    signInWithEmailLink
+    signInWithEmailLink,
+    signInWithPopup,
+    getRedirectResult,
 } from 'firebase/auth';
 
 const actionCodeSettings = {
-    // Update to match your deployment:
     url: `${window.location.origin}/signup`,
     handleCodeInApp: true,
 };
@@ -35,10 +36,24 @@ const SignUp = () => {
         return () => unsubscribe();
     }, [navigate]);
 
+    // Handle any pending redirect result (in case signInWithRedirect was used previously)
+    useEffect(() => {
+        getRedirectResult(auth)
+            .then((result) => {
+                if (result?.user) {
+                    navigate('/dashboard', { replace: true });
+                }
+            })
+            .catch((error) => {
+                if (error.code !== 'auth/no-current-user') {
+                    setErrorMsg(error.message || 'Sign-in failed.');
+                }
+            });
+    }, [navigate]);
+
     // Handle passwordless email link sign-in (on return from link in email)
     useEffect(() => {
         if (isSignInWithEmailLink(auth, window.location.href)) {
-            // Try to get email from localStorage, prompt if not available
             let storedEmail = window.localStorage.getItem('emailForSignIn');
             if (!storedEmail) {
                 storedEmail = window.prompt('Please provide your email for confirmation');
@@ -47,7 +62,7 @@ const SignUp = () => {
                 signInWithEmailLink(auth, storedEmail, window.location.href)
                     .then(() => {
                         window.localStorage.removeItem('emailForSignIn');
-                        // navigation will be handled in onAuthStateChanged
+                        // navigation handled by onAuthStateChanged
                     })
                     .catch((error) => {
                         setErrorMsg(error.message || 'Email link sign-in failed.');
@@ -78,9 +93,10 @@ const SignUp = () => {
         setErrorMsg('');
         setInfoMsg('');
         try {
-            const { signInWithRedirect } = await import('firebase/auth');
-            await signInWithRedirect(auth, googleProvider);
-            // onAuthStateChanged will handle the redirect after auth
+            const result = await signInWithPopup(auth, googleProvider);
+            if (result?.user) {
+                navigate('/dashboard', { replace: true });
+            }
         } catch (error) {
             console.error('Google sign-in error:', error);
             setErrorMsg('Google sign-in failed. Try again.');

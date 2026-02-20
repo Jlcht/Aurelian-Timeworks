@@ -1,55 +1,391 @@
-.header { 
-    display:flex; 
-    justify-content:space-between; 
-    align-items:center; 
-    padding:20px 40px; 
-    background:var(--color-bg); 
-    border-bottom:1px solid var(--color-border);
+/* Luxury Header - Aurelian Timeworks */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 60px;
+    background: var(--color-bg);
+    border-bottom: 1px solid var(--color-border);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    backdrop-filter: blur(10px);
+    background: color-mix(in srgb, var(--color-bg) 95%, transparent);
 }
 
-.header-left { 
-    display:flex; 
-    align-items:center;
+/* === Center Brand === */
+.header-center {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    pointer-events: none;
 }
 
 .header-title-link {
     text-decoration: none;
     color: inherit;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    pointer-events: all;
+    transition: opacity 0.3s ease;
 }
 
-.header-logo { 
-    width:36px; 
-    margin-right:10px;
+.header-title-link:hover {
+    opacity: 0.8;
 }
 
-.header-nav { 
+.header-brand-logo {
+    width: 72px;
+    height: 72px;
+    object-fit: contain;
+    display: block;
+    margin-top: -30px;
+    margin-bottom: -15px;
+}
+
+.header-brand-main {
+    font-family: 'Cormorant Garamond', 'Georgia', serif;
+    font-size: 1.85rem;
+    font-weight: 600;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--color-text);
+    line-height: 1;
+}
+
+.header-brand-sub {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.65rem;
+    font-weight: 300;
+    letter-spacing: 0.45em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    line-height: 1;
+    margin-top: 4px;
+}
+
+/* === Left Nav === */
+.header-nav {
     display: flex;
     align-items: center;
-    gap: 24px;
+    gap: 40px;
 }
 
-.header-nav a { 
-    font-weight:500; 
-    text-decoration:none; 
-    color:var(--color-text);
-    transition: color 0.2s ease;
+.header-nav a {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 0.9rem;
+    text-decoration: none;
+    color: var(--color-text);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    position: relative;
+    padding: 8px 0;
+    transition: color 0.3s ease;
+}
+
+.header-nav a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%) scaleX(0);
+    width: 100%;
+    height: 1px;
+    background: var(--color-accent);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .header-nav a:hover {
-    color: #667eea;
+    color: var(--color-accent);
 }
 
+.header-nav a:hover::after {
+    transform: translateX(-50%) scaleX(1);
+}
+
+/* Refined Sign In Button */
 .header-signin-button {
-    padding: 0.5rem 1.25rem;
-    border-radius: 8px;
-    font-weight: 600;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white !important;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    padding: 12px 32px;
+    border-radius: 2px;
+    font-weight: 500;
+    font-size: 0.85rem;
+    letter-spacing: 1.5px;
+    background: var(--color-accent);
+    color: var(--color-bg) !important;
+    border: 1px solid var(--color-accent);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    text-transform: uppercase;
+}
+
+.header-signin-button::after {
+    display: none;
 }
 
 .header-signin-button:hover {
+    background: transparent;
+    color: var(--color-accent) !important;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px color-mix(in srgb, var(--color-accent) 20%, transparent);
+}
+
+/* Header Icons - Refined */
+.header-icons {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.header-icon {
+    font-size: 1.2rem;
+    color: var(--color-text);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.header-icon:hover {
+    color: var(--color-accent);
+    background: var(--color-accent-light);
     transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
-    color: white !important;
+}
+
+/* Cart Badge - Luxury Style */
+.cart-icon {
+    position: relative;
+}
+
+.cart-badge {
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    background: var(--color-text);
+    color: var(--color-bg);
+    font-size: 0.65rem;
+    font-weight: 600;
+    min-width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2px;
+    letter-spacing: 0;
+    border: 2px solid var(--color-bg);
+}
+
+/* ── Hamburger button (mobile only) ── */
+.header-hamburger {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: none;
+    border: none;
+    color: var(--color-text);
+    font-size: 1.3rem;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+.header-hamburger:hover {
+    background: var(--color-accent-light);
+    color: var(--color-accent);
+}
+
+/* ── Mobile nav backdrop ── */
+.mobile-nav-backdrop {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: color-mix(in srgb, var(--color-text) 50%, transparent);
+    z-index: 1050;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    backdrop-filter: blur(2px);
+}
+
+.mobile-nav-backdrop--visible {
+    opacity: 1;
+    pointer-events: all;
+}
+
+/* ── Mobile nav drawer ── */
+.mobile-nav {
+    display: none;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 80%;
+    max-width: 320px;
+    height: 100vh;
+    background: var(--color-bg);
+    z-index: 1100;
+    flex-direction: column;
+    padding: 80px 40px 40px;
+    gap: 8px;
+    transform: translateX(100%);
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    border-left: 1px solid var(--color-border);
+    overflow-y: auto;
+}
+
+.mobile-nav--open {
+    transform: translateX(0);
+}
+
+.mobile-nav-link {
+    font-family: 'Cormorant Garamond', 'Georgia', serif;
+    font-size: 1.6rem;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    color: var(--color-text);
+    text-decoration: none;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--color-border);
+    transition: color 0.3s ease, padding-left 0.3s ease;
+}
+
+.mobile-nav-link:last-of-type {
+    border-bottom: none;
+}
+
+.mobile-nav-link:hover {
+    color: var(--color-accent);
+    padding-left: 8px;
+}
+
+.mobile-nav-icons {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-top: 32px;
+    padding-top: 32px;
+    border-top: 1px solid var(--color-border);
+}
+
+.mobile-nav-icon-link {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 300;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-text);
+    text-decoration: none;
+    padding: 12px 0;
+    transition: color 0.3s ease;
+    opacity: 0.8;
+}
+
+.mobile-nav-icon-link:hover {
+    color: var(--color-accent);
+    opacity: 1;
+}
+
+/* ══════════════════════════════
+   Responsive Breakpoints
+══════════════════════════════ */
+
+@media (max-width: 1024px) {
+    .header {
+        padding: 25px 40px;
+    }
+    
+    .header-nav {
+        gap: 30px;
+    }
+
+    .header-brand-main {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .header {
+        padding: 16px 24px;
+    }
+
+    /* Hide desktop nav on mobile */
+    .header-nav {
+        display: none;
+    }
+
+    /* Show hamburger */
+    .header-hamburger {
+        display: flex;
+    }
+
+    /* Show mobile backdrop and nav */
+    .mobile-nav-backdrop {
+        display: block;
+    }
+
+    .mobile-nav {
+        display: flex;
+    }
+
+    /* Shrink logo area */
+    .header-brand-logo {
+        width: 52px;
+        height: 52px;
+        margin-top: -20px;
+        margin-bottom: -10px;
+    }
+
+    .header-brand-main {
+        font-size: 1.2rem;
+    }
+
+    .header-brand-sub {
+        font-size: 0.55rem;
+    }
+
+    /* Hide some icons on very small screens to reduce clutter */
+    .header-icons .header-icon:not(.cart-icon) {
+        display: none;
+    }
+
+    /* Gap between cart and hamburger */
+    .header-icons {
+        gap: 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    .header {
+        padding: 14px 16px;
+    }
+
+    .header-brand-main {
+        font-size: 1rem;
+        letter-spacing: 0.15em;
+    }
+
+    .header-brand-sub {
+        font-size: 0.5rem;
+        letter-spacing: 0.3em;
+    }
+
+    .header-brand-logo {
+        width: 44px;
+        height: 44px;
+        margin-top: -16px;
+        margin-bottom: -8px;
+    }
 }
