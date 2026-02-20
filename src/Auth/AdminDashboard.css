@@ -14,7 +14,7 @@
     background: white;
     padding: 60px;
     border-radius: 0;
-    box-shadow: 0 1px 3px rgba(166, 0, 0, 0.08);
+    box-shadow: 0 1px 3px color-mix(in srgb, var(--color-text) 8%, transparent);
     max-width: 1400px;
     width: 100%;
     animation: luxurySlideIn 0.6s cubic-bezier(0.4, 0, 0.2, 1);
@@ -110,7 +110,7 @@
     font-size: 0.95rem;
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
     font-family: 'Inter', sans-serif;
-    background: #fff;
+    background: white;
     color: var(--color-text);
     font-weight: 300;
     letter-spacing: 0.3px;
@@ -121,7 +121,7 @@
 .admin-select:focus {
     outline: none;
     border-color: var(--color-accent);
-    box-shadow: 0 0 0 3px rgba(201, 169, 97, 0.1);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-accent) 10%, transparent);
 }
 
 .admin-textarea {
@@ -151,7 +151,7 @@
     background: transparent;
     color: var(--color-text);
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(166, 0, 0, 0.2);
+    box-shadow: 0 6px 20px color-mix(in srgb, var(--color-text) 20%, transparent);
 }
 
 .admin-cancel-btn {

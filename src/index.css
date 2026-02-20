@@ -35,19 +35,19 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-  font-size: 3.5rem;
-  letter-spacing: 3px;
+  font-size: clamp(2rem, 6vw, 3.5rem);
+  letter-spacing: clamp(1px, 0.5vw, 3px);
   font-weight: 300;
 }
 
 h2 {
-  font-size: 2.5rem;
-  letter-spacing: 2.5px;
+  font-size: clamp(1.6rem, 4vw, 2.5rem);
+  letter-spacing: clamp(1px, 0.4vw, 2.5px);
 }
 
 h3 {
-  font-size: 1.8rem;
-  letter-spacing: 2px;
+  font-size: clamp(1.2rem, 3vw, 1.8rem);
+  letter-spacing: clamp(0.5px, 0.3vw, 2px);
 }
 
 p {
@@ -102,3 +102,11 @@ button, input, select, textarea {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
+
+/* ── Global Mobile Adjustments ── */
+@media (max-width: 480px) {
+  body {
+    font-size: 15px;
+  }
+}
+

@@ -10,6 +10,8 @@ import Dashboard from './Auth/Dashboard';
 import AdminDashboard from './Auth/AdminDashboard';
 import Cart from './pages/Cart';
 import Wishlist from './pages/Wishlist';
+import About from './pages/About';
+import Contact from './pages/Contact';
 import './App.css';
 
 // Inline PrivateRoute implementation
@@ -71,6 +73,8 @@ const App = () => {
                                     </PrivateRoute>
                                 }
                             />
+                            <Route path="/about" element={<About />} />
+                            <Route path="/contact" element={<Contact />} />
                         </Routes>
                     </Router>
                 </WishlistProvider>

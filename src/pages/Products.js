@@ -18,12 +18,13 @@ const Products = () => {
 
     return (
         <>
-            <Header/>
+            <Header />
+            {/* Sidebar renders its own fixed drawer + toggle button */}
+            <ProductsSidebar filters={filters} onFilterChange={handleFilterChange} />
             <div className="products-layout">
-                <ProductsSidebar filters={filters} onFilterChange={handleFilterChange} />
                 <ProductsContent filters={filters} />
             </div>
-            <Footer/>
+            <Footer />
         </>
     );
 };

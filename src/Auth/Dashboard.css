@@ -12,7 +12,7 @@
     background: white;
     padding: 60px;
     border-radius: 0;
-    box-shadow: 0 1px 3px rgba(166, 0, 0, 0.08);
+    box-shadow: 0 1px 3px color-mix(in srgb, var(--color-text) 8%, transparent);
     max-width: 800px;
     width: 100%;
     animation: luxurySlideIn 0.6s cubic-bezier(0.4, 0, 0.2, 1);
@@ -43,7 +43,7 @@
 
 /* Refined Alert Messages */
 .dashboard-error {
-    background: rgba(166, 0, 0, 0.05);
+    background: color-mix(in srgb, var(--color-text) 5%, transparent);
     color: var(--color-text);
     padding: 20px;
     border-radius: 0;
@@ -55,7 +55,7 @@
 }
 
 .dashboard-success {
-    background: rgba(201, 169, 97, 0.1);
+    background: color-mix(in srgb, var(--color-accent) 10%, transparent);
     color: var(--color-accent);
     padding: 20px;
     border-radius: 0;
@@ -83,13 +83,13 @@
     border-radius: 50%;
     object-fit: cover;
     border: 3px solid var(--color-border);
-    box-shadow: 0 4px 16px rgba(166, 0, 0, 0.1);
+    box-shadow: 0 4px 16px color-mix(in srgb, var(--color-text) 10%, transparent);
     transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.4s ease;
 }
 
 .dashboard-profile-image:hover {
     transform: scale(1.03);
-    box-shadow: 0 8px 24px rgba(166, 0, 0, 0.15);
+    box-shadow: 0 8px 24px color-mix(in srgb, var(--color-text) 15%, transparent);
 }
 
 .dashboard-profile-placeholder {
@@ -103,7 +103,7 @@
     justify-content: center;
     color: var(--color-text);
     border: 3px solid var(--color-border);
-    box-shadow: 0 4px 16px rgba(166, 0, 0, 0.1);
+    box-shadow: 0 4px 16px color-mix(in srgb, var(--color-text) 10%, transparent);
     gap: 1rem;
     position: relative;
 }
@@ -266,7 +266,7 @@
 .dashboard-textarea:focus {
     outline: none;
     border-color: var(--color-accent);
-    box-shadow: 0 0 0 3px rgba(201, 169, 97, 0.1);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-accent) 10%, transparent);
 }
 
 .dashboard-textarea {
@@ -324,7 +324,7 @@
     background: var(--color-text);
     color: var(--color-bg);
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(166, 0, 0, 0.2);
+    box-shadow: 0 6px 20px color-mix(in srgb, var(--color-text) 20%, transparent);
 }
 
 .dashboard-save-btn {
@@ -339,7 +339,7 @@
     background: transparent;
     color: var(--color-accent);
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(201, 169, 97, 0.2);
+    box-shadow: 0 6px 20px color-mix(in srgb, var(--color-accent) 20%, transparent);
 }
 
 .dashboard-save-btn:disabled {
@@ -378,7 +378,7 @@
     background: var(--color-text);
     color: var(--color-bg);
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(166, 0, 0, 0.2);
+    box-shadow: 0 6px 20px color-mix(in srgb, var(--color-text) 20%, transparent);
 }
 
 /* Responsive Design */

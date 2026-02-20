@@ -47,7 +47,7 @@
     overflow: hidden;
     position: relative;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 0 1px 3px rgba(166, 0, 0, 0.08);
+    box-shadow: 0 1px 3px color-mix(in srgb, var(--color-text) 8%, transparent);
     display: flex;
     flex-direction: column;
     border: 1px solid var(--color-border);
@@ -55,7 +55,7 @@
 
 .product-card:hover {
     transform: translateY(-8px);
-    box-shadow: 0 12px 40px rgba(166, 0, 0, 0.15);
+    box-shadow: 0 12px 40px color-mix(in srgb, var(--color-text) 15%, transparent);
 }
 
 /* Refined Product Badge */
@@ -155,7 +155,7 @@
     width: 6px;
     height: 6px;
     border-radius: 50%;
-    background: rgba(166, 0, 0, 0.3);
+    background: color-mix(in srgb, var(--color-text) 30%, transparent);
     transition: all 0.3s ease;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
@@ -226,7 +226,7 @@
     background: var(--color-text);
     color: var(--color-bg);
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(166, 0, 0, 0.25);
+    box-shadow: 0 6px 20px color-mix(in srgb, var(--color-text) 25%, transparent);
 }
 
 .product-cta:active {
@@ -271,20 +271,48 @@
 
 @media (max-width: 768px) {
     .products-grid {
-        grid-template-columns: 1fr;
-        gap: 30px;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
     }
 
     .products-content {
-        padding: 40px 20px;
+        padding: 40px 16px;
     }
 
     .products-header h2 {
-        font-size: 2.2rem;
+        font-size: clamp(1.6rem, 5vw, 2.2rem);
+    }
+
+    .products-header {
+        margin-bottom: 40px;
     }
 
     .product-image-container {
-        height: 350px;
+        height: 280px;
+    }
+
+    .product-info {
+        padding: 24px 20px;
+    }
+
+    .product-cta {
+        margin: 0 20px 20px;
+        padding: 13px 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .products-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+
+    .products-content {
+        padding: 32px 12px;
+    }
+
+    .product-image-container {
+        height: 260px;
     }
 }
 
@@ -331,7 +359,7 @@
 }
 
 .products-error {
-    background: rgba(166, 0, 0, 0.05);
+    background: color-mix(in srgb, var(--color-text) 5%, transparent);
     border-left: 3px solid var(--color-text);
     border-radius: 0;
     padding: 40px;

@@ -1,5 +1,12 @@
+/* Prevent horizontal overflow on mobile */
+html, body {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
 .App {
   text-align: center;
+  overflow-x: hidden;
 }
 
 .App-logo {

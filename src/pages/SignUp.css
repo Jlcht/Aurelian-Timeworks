@@ -12,7 +12,7 @@
     background: white;
     padding: 60px;
     border-radius: 0;
-    box-shadow: 0 1px 3px rgba(166, 0, 0, 0.08);
+    box-shadow: 0 1px 3px color-mix(in srgb, var(--color-text) 8%, transparent);
     width: 100%;
     max-width: 500px;
     border: 1px solid var(--color-border);
@@ -79,7 +79,7 @@
     outline: none;
     border-color: var(--color-accent);
     background: white;
-    box-shadow: 0 0 0 3px rgba(201, 169, 97, 0.1);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-accent) 10%, transparent);
 }
 
 .signup-submit-btn {
@@ -103,7 +103,7 @@
     background: transparent;
     color: var(--color-text);
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(166, 0, 0, 0.2);
+    box-shadow: 0 6px 20px color-mix(in srgb, var(--color-text) 20%, transparent);
 }
 
 .signup-or {
@@ -150,7 +150,7 @@
     border-color: var(--color-text);
     color: var(--color-bg);
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(166, 0, 0, 0.2);
+    box-shadow: 0 6px 20px color-mix(in srgb, var(--color-text) 20%, transparent);
 }
 
 .signup-google-icon {
@@ -171,5 +171,31 @@
 
     .signup-card h2 {
         font-size: 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .signup-container {
+        padding: 40px 0.75rem;
+    }
+
+    .signup-card {
+        padding: 32px 20px;
+    }
+
+    .signup-card h2 {
+        font-size: 1.7rem;
+        letter-spacing: 2px;
+    }
+
+    .signup-input {
+        padding: 12px 14px;
+        font-size: 0.9rem;
+    }
+
+    .signup-submit-btn,
+    .signup-google-btn {
+        padding: 14px 0;
+        font-size: 0.8rem;
     }
 }

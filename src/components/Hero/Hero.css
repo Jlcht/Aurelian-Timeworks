@@ -1,28 +1,288 @@
+/* ================================================
+   Cinematic Hero — Aurelian Timeworks
+   ================================================ */
+
 .hero {
-    padding:120px 40px;
-    text-align:center;
-    background:var(--color-bg);
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    min-height: 640px;
+    overflow: hidden;
+    background: #0a0a0a;
 }
 
-.hero h1 {
-    font-size:3rem;
-    font-weight:700;
-    color:var(--color-text);
+/* ── Slides ── */
+.hero-slide {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    transform: scale(1.08);
+    transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: opacity, transform;
 }
 
-.hero p {
-    margin-top:16px;
-    font-size:1.25rem;
-    color:var(--color-text);
+.hero-slide--active {
+    opacity: 1;
+    animation: kenBurns 7s ease-out forwards;
 }
 
-.hero-btn {
-    margin-top:32px;
-    padding:12px 32px;
-    border:0;
-    background:var(--color-accent);
-    color:white;
-    border-radius:6px;
-    cursor:pointer;
-    font-size:1.1rem;
+@keyframes kenBurns {
+    from { transform: scale(1.08); }
+    to   { transform: scale(1.0);  }
+}
+
+/* ── Gradient overlay ── */
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to right,
+        rgba(0, 0, 0, 0.72) 0%,
+        rgba(0, 0, 0, 0.38) 55%,
+        rgba(0, 0, 0, 0.15) 100%
+    );
+    z-index: 1;
+}
+
+/* ── Content block ── */
+.hero-content {
+    position: absolute;
+    top: 50%;
+    left: 10%;
+    transform: translateY(-50%);
+    z-index: 2;
+    max-width: 560px;
+}
+
+.hero-content--enter .hero-label,
+.hero-content--enter .hero-headline,
+.hero-content--enter .hero-rule,
+.hero-content--enter .hero-sub,
+.hero-content--enter .hero-cta {
+    animation: fadeUp 0.9s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+.hero-content--enter .hero-label      { animation-delay: 0.1s; }
+.hero-content--enter .hero-headline   { animation-delay: 0.25s; }
+.hero-content--enter .hero-rule       { animation-delay: 0.4s; }
+.hero-content--enter .hero-sub        { animation-delay: 0.5s; }
+.hero-content--enter .hero-cta        { animation-delay: 0.65s; }
+
+.hero-content--exit .hero-label,
+.hero-content--exit .hero-headline,
+.hero-content--exit .hero-rule,
+.hero-content--exit .hero-sub,
+.hero-content--exit .hero-cta {
+    animation: fadeDown 0.5s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0);    }
+}
+
+@keyframes fadeDown {
+    from { opacity: 1; transform: translateY(0);    }
+    to   { opacity: 0; transform: translateY(-16px);}
+}
+
+/* ── Label ── */
+.hero-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 400;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    margin-bottom: 18px;
+}
+
+/* ── Headline ── */
+.hero-headline {
+    font-family: 'Cormorant Garamond', 'Georgia', serif;
+    font-size: clamp(3rem, 6vw, 5.5rem);
+    font-weight: 600;
+    line-height: 1.05;
+    color: #f5efe0;
+    letter-spacing: 0.02em;
+    margin: 0 0 24px 0;
+}
+
+/* ── Gold rule ── */
+.hero-rule {
+    width: 48px;
+    height: 1px;
+    background: var(--color-accent);
+    margin-bottom: 24px;
+}
+
+/* ── Subtitle ── */
+.hero-sub {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 300;
+    line-height: 1.8;
+    color: rgba(245, 239, 224, 0.75);
+    max-width: 400px;
+    margin-bottom: 40px;
+    letter-spacing: 0.02em;
+}
+
+/* ── CTA Button ── */
+.hero-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #f5efe0;
+    text-decoration: none;
+    border-bottom: 1px solid var(--color-accent);
+    padding-bottom: 6px;
+    transition: color 0.3s ease, gap 0.3s ease;
+}
+
+.hero-cta:hover {
+    color: var(--color-accent);
+    gap: 20px;
+}
+
+.hero-cta-arrow {
+    font-size: 1rem;
+    transition: transform 0.3s ease;
+}
+
+.hero-cta:hover .hero-cta-arrow {
+    transform: translateX(4px);
+}
+
+/* ── Dot Navigation ── */
+.hero-dots {
+    position: absolute;
+    bottom: 48px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 3;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    background: none;
+    border: none;
+    padding: 0;
+}
+
+.hero-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: rgba(245, 239, 224, 0.35);
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hero-dot--active {
+    width: 28px;
+    border-radius: 3px;
+    background: var(--color-accent);
+}
+
+/* ── Slide Counter ── */
+.hero-counter {
+    position: absolute;
+    bottom: 50px;
+    right: 60px;
+    z-index: 3;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.85rem;
+    color: rgba(245, 239, 224, 0.5);
+    letter-spacing: 0.1em;
+}
+
+.hero-counter-current {
+    color: #f5efe0;
+    font-size: 1.1rem;
+}
+
+/* ── Progress bar ── */
+.hero-progress {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.1);
+    z-index: 3;
+}
+
+.hero-progress-bar {
+    height: 100%;
+    background: var(--color-accent);
+    animation: progressFill 6s linear forwards;
+}
+
+@keyframes progressFill {
+    from { width: 0%; }
+    to   { width: 100%; }
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+    .hero {
+        min-height: 560px;
+    }
+
+    .hero-content {
+        left: 5%;
+        max-width: 90%;
+    }
+
+    .hero-headline {
+        font-size: clamp(2.2rem, 9vw, 3rem);
+    }
+
+    .hero-counter {
+        right: 20px;
+        bottom: 55px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero {
+        min-height: 480px;
+    }
+
+    .hero-content {
+        left: 4%;
+        max-width: 94%;
+    }
+
+    .hero-headline {
+        font-size: clamp(1.8rem, 8vw, 2.4rem);
+        margin-bottom: 16px;
+    }
+
+    .hero-sub {
+        font-size: 0.85rem;
+        margin-bottom: 28px;
+    }
+
+    .hero-label {
+        font-size: 0.62rem;
+        margin-bottom: 12px;
+    }
+
+    .hero-counter {
+        display: none;
+    }
+
+    .hero-dots {
+        bottom: 28px;
+    }
 }
