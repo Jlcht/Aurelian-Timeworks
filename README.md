@@ -2,7 +2,7 @@
 
 A luxury vintage watch e-commerce platform built with React and Firebase.
 
-� **Live site:** [https://backend-app-jl.web.app](https://backend-app-jl.web.app)
+**Live site:** [https://backend-app-jl.web.app](https://backend-app-jl.web.app)
 
 ---
 
@@ -19,7 +19,7 @@ A luxury vintage watch e-commerce platform built with React and Firebase.
 
 ---
 
-## �️ Tech Stack
+## Tech Stack
 
 | Layer           | Technology                                           |
 | --------------- | ---------------------------------------------------- |
@@ -89,22 +89,6 @@ npm start
 # → http://localhost:3000
 ```
 
-### Environment Variables
-
-Create a `.env` file at the root (already in `.gitignore`):
-
-```env
-REACT_APP_API_KEY=your_firebase_api_key
-REACT_APP_AUTH_DOMAIN=your_project.firebaseapp.com
-REACT_APP_PROJECT_ID=your_project_id
-REACT_APP_STORAGE_BUCKET=your_project.firebasestorage.app
-REACT_APP_MESSAGING_SENDER_ID=your_sender_id
-REACT_APP_APP_ID=your_app_id
-REACT_APP_GOOGLE_CLIENT_ID=your_oauth_client_id
-REACT_APP_GOOGLE_CLIENT_SECRET=your_oauth_secret
-REACT_APP_GOOGLE_REDIRECT_URI=http://localhost:3000
-```
-
 ---
 
 ## 🚢 Deployment
@@ -118,10 +102,3 @@ firebase deploy --only hosting
 ```
 
 ---
-
-## 🔐 Security
-
-- All secrets stored in `.env` (gitignored)
-- Firebase API key restricted by HTTP referrer
-- Firestore security rules enforced
-- Firebase Auth handles all authentication
